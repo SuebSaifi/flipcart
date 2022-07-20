@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<h1 class="jumbotron">Welcome Shopping App || <%=@category.name%> </h1>
+  <strong>Product Details:</strong><br/>
+  <%Product.all.each do |product|%>
+  <span>Title:</span>
+  <%= product.title %><br/>
+  <span>Description:</span>
+  
+  <%= product.description %><br/>
+  <span>Price:</span>
+  
+  <%= product.price %>
+  <%# <%debugger %>
+
+    <%=image_tag product.image , height: 300%>
+<%end%>
+</p>
+
+<%# <%= link_to 'Edit', edit_product_path(@product) %> %>

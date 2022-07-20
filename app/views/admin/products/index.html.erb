@@ -1,0 +1,18 @@
+<h1 class="jumbotron">Admin | Product</h1>\
+<div class="container">
+    <div class="row">
+        <%=link_to "Add product",new_admin_product_path%>
+        <div class="col-12 card">
+            <table class="table">
+                <thead> 
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </thead>
+                <tbody>
+                    <%=render "admin_product" %>
+                <tbody>
+            </table>
+        </div>
+    </div>
+</div>

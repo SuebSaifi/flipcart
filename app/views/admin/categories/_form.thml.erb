@@ -1,0 +1,7 @@
+<div class="container">
+    <%=simple_form_for [:admin,@category],class:"form_horizontal" do |f| %>
+        <%=f.input :name%>
+        <%=f.button :submit%>
+    <%end%>
+    <%=link_to "back to category list",admin_category_path%>
+</div>
