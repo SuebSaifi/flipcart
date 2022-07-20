@@ -33,9 +33,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <%if user_signed_in? && current_user.admin?%>
+        <%if user_signed_in? && current_user.saller%>
 
-          <%=button_to 'post' , root_path%>
+          <%=link_to 'Product' , new_product_path%>
           <%end%>
         </li>
         

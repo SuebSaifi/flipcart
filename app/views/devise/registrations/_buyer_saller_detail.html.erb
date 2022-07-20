@@ -1,0 +1,13 @@
+<div class="field">
+    <b>Buyer and Saller</b><br />
+    <div class="form-check">
+        <%= f.label "Buyer",class:"form-check-label",for:"flexRadioDefault1" %>
+        <%= f.check_box :buyer,class: "form-check-input mt-0",type:"radio" ,name:"flexRadioDefault",id:"flexRadioDefault1"%> 
+    </div>
+    <div class="form-check">
+        <%= f.label "Saller",class:"form-check-label",for:"flexRadioDefault2" %>
+        <%= f.check_box :saller,class: "form-check-input mt-0",id:"flexRadioDefault2" %> 
+    </div>
+    <%=f.input :profile_image ,lable_html:{class:"form-lable",for:"formFile"}%>   
+
+</div>

@@ -1,0 +1,16 @@
+<%if user_signed_in? %>
+<div class="d-flex mx-4">
+<%@products.each do |product|%>
+    <%# <%=product.title%>
+   <div class="card mx-4" style="width: 18rem;">
+
+  <%=image_tag product.image ,class:"card-img-top",width: "286px",height: '200px'%>
+  <div class="card-body">
+    <p class="card-text"><%=product.description%>.</p>
+  </div>
+    <%=link_to "#{product.title}",product_path(product.id)%>
+</div>
+
+<%end%>
+</div>
+<%end%>

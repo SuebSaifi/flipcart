@@ -1,0 +1,24 @@
+<h2>User Detail</h2>
+    <div class="field my-2">
+      <%= f.input :first_name,label:"Name",required: true,input_html: {class: "form-control textarea"},wrapper: false,placeholder:"Enter Your First Name",label_html:{class:"label"}%>
+    </div>
+    
+    <div class="field my-2">
+        <%= f.input :last_name,required:true,input_html: {class:"form-control textarea"},wrapper: false,label_html:{class:"label"},placeholder:"Enter Last Name"%>
+    </div>
+    <div class="field my-2">
+        <%= f.input :phone_number,required:true,input_html: {class:"form-control textarea"},wrapper: false,label_html:{class:"label"},placeholder:"Enter Phone Number"%>
+    </div>    
+     <div class="field my-2" >
+      <%= f.input :email,required: true,input_html: {class:"form-control textarea floatingInput"},wrapper: false,label_html:{class:"floatingInput"},placeholder:"Enter Your Email"%>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+     <div class="field my-2">
+    <%=f.input :password ,required: true,input_html: {class:"form-control textarea"},wrapper: false,label_html:{class:"lable"},placeholder:"Enter Your Password" ,hint:("#{@minimum_password_length} characters minimum " if @minimum_password_length)%>
+  </div>
+
+  <div class="field my-2">
+    <%= f.input :password_confirmation,required: true,input_html: {class:"form-control textarea"},wrapper:false,placeholder:"Enter Your confirm Password",label_html:{class: "label" }%>
+  </div>
