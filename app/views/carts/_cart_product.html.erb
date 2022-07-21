@@ -1,0 +1,31 @@
+<%@carts.each do |cart|%>
+
+<tr>
+    <td>
+        <%=cart.product.title%>
+    </td>
+    <td>
+        <%=cart.product.price%>
+    </td>
+    <td>
+        1
+    </td>
+    <td>
+        <%=cart.product.price%>
+    </td>
+     <td>
+         <%=button_to "Remove" , "/users/#{current_user.id}/carts/#{cart.id}",method: :delete ,class:"btn btn-denger"%>
+    </td>
+     <td>
+        <%=link_to "Buy" , user_orders_path(cart) ,class:"btn btn-success"%>
+    </td>
+</tr>
+<%end%>
+<tr>
+    <td collapse="3">
+    <h5>Total</h5>
+    </td>
+    <td>
+    <%=render "total"%>
+    </td>
+</tr>

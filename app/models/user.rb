@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # has_one_attached :profile_image
   attr_writer :current_step
   has_many :wishlists, dependent: :destroy
+  has_many :carts
   def current_step
     @current_step || steps.first
   end

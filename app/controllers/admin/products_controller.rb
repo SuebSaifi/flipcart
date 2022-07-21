@@ -1,6 +1,5 @@
 class Admin::ProductsController < ApplicationController
     before_action :authenticate_admin!
-    
     def index
       @products = Product.all
     end
@@ -16,13 +15,15 @@ class Admin::ProductsController < ApplicationController
     end
     def create
       @product = Product.new(product_params)
+    
       if @product.save
-        @category_arr=params.dig(:product,:category_ids)
-        @category_arr.each do |cat|
+          @category_array=params.dig(:product,:category_ids)
+          @category_array.each do |cat|
           @category = Category.find(cat)
-          @product.categories.push(@category)
+          @product.categories << @category
         end
-        flash[:success] = "Object successfully created"
+        flash[:success] = "Product successfully created"
+       
         redirect_to admin_products_path
       else
         flash[:error] = "Something went wrong"
@@ -34,12 +35,12 @@ class Admin::ProductsController < ApplicationController
       @product = Product.find(params[:id])
       if @product.update(product_params)
         @product.product_categories.destroy_all
-        @category_arr=params.dig(:product,:category_ids)
-        @category_arr.each do |cat|
+        @category_array=params.dig(:product,:category_ids)
+        @category_array.each do |cat|
           @category = Category.find(cat)
           @product.categories << @category
         end
-        flash[:success] = "Object successfully created"
+        flash[:success] = "Product successfully created"
         redirect_to admin_products_path
       else
         flash[:error] = "Something went wrong"
@@ -57,7 +58,7 @@ class Admin::ProductsController < ApplicationController
     end
     
     def product_params
-      params.require(:product).permit(:title,:price,:description,:image)
+      params.require(:product).permit(:title,:price,:description,:image,:category_ids=>[])
     end
     
   end

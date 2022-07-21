@@ -13,7 +13,9 @@
  <div class="d-flex " id='wish_<%=product.id%>'>
      <%# <%debugger%> 
     <%=render "wishlists/toggle",product_id: product.id%>
-    </div></div>
+    </div>
+     <%= button_to "Add Cart", user_carts_path( product), :method => :post ,class:"icon btn btn-info"%>  
+    </div>
 <%end%>
 </div>
 <%end%>
