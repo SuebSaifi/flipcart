@@ -1,0 +1,10 @@
+<%@wishlists.each do |wish|%>
+<%if current_user.id == wish.user.id%>
+ <div class="card mx-4" style="width: 18rem;">
+
+  <%=image_tag wish.product.image ,class:"card-img-top",width: "286px",height: '200px'%>
+  <div class="card-body">
+    <p class="card-text"><%=wish.product.description%>.</p>
+  </div>
+  <%end%>
+<%end%>

@@ -6,8 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    
+    <script src="https://kit.fontawesome.com/b492b7fc6e.js" crossorigin="anonymous"></script>
+     <%=stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css"%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -23,32 +26,40 @@
     </div>
     <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <%# <a class="navbar-brand" href="#">Navbar</a> %>
-    <%=link_to root_path,class:"navbar-brand" do%>
-    <i class="bi bi-house-door-fill "style="width:13px; margin-bottom:10px; color:black"></i>
-    <%end%>
+    <%=link_to "Flipcart",root_path,class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <%=Category.all.each do |category|%>
-        <div class="navlink">
-          <%=link_to category.name.capitalize,category_path(category)%>
-        </div>
+        <%=link_to "Admin",new_admin_session_path,class:"nav-link active"%>
+        </li>
+        <%Category.all.each do |category|%>
+        <li class="nav-item">
+        
+          <%=link_to category.name.capitalize,category_path(category),class:"nav-link"%>
+        </li>
           <%if admin_signed_in?%>
-          <h4>Admin</h4>
-             <div class="navlink">
-              <%=link_to 'Categories',admin_categories_path%>
-              </div>
-             <div class="navlink">
-              <%=link_to 'Products',admin_products_path%>
-              </div>
+          
+          <li class="nav-item">
+             
+              <%=link_to 'Categories',admin_categories_path,class:"nav-link"%>
+             
+              </li>
+              <li class="nav-item">
+             
+              <%=link_to 'Products',admin_products_path,class:"nav-link"%>
+             
+              </li>
           <%end%> 
         <%end%>
       </ul>
     <%if user_signed_in?%>
+    <ul class="navbar-nav  mb-2 mb-lg-0">
+        <li>
+          <%=link_to "Wishlist",user_wishlist_path(current_user),class:"nav-link"%>
+        </li>
     <p class="control my-1">
     <%= link_to current_user.email,edit_user_registration_path,class:"btn btn-info mx-2"%>
     </p>
@@ -62,6 +73,7 @@
     <p class="my-1" >
     <%= link_to "Sing Up",new_user_registration_path,class:"btn btn-info"%>
     </p>
+    </ul>
     <%end%>
       
     </div>

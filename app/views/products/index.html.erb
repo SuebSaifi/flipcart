@@ -9,8 +9,11 @@
     <p class="card-text"><%=product.description%>.</p>
   </div>
     <%=link_to "#{product.title}",product_path(product.id)%>
-</div>
 
+ <div class="d-flex " id='wish_<%=product.id%>'>
+     <%# <%debugger%> 
+    <%=render "wishlists/toggle",product_id: product.id%>
+    </div></div>
 <%end%>
 </div>
 <%end%>

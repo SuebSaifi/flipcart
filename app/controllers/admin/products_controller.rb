@@ -1,5 +1,6 @@
 class Admin::ProductsController < ApplicationController
     before_action :authenticate_admin!
+    
     def index
       @products = Product.all
     end
@@ -19,7 +20,7 @@ class Admin::ProductsController < ApplicationController
         @category_arr=params.dig(:product,:category_ids)
         @category_arr.each do |cat|
           @category = Category.find(cat)
-          @product.categories << @category
+          @product.categories.push(@category)
         end
         flash[:success] = "Object successfully created"
         redirect_to admin_products_path

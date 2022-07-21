@@ -2,20 +2,24 @@
 
 <p>
 <h1 class="jumbotron">Welcome Shopping App || <%=@category.name%> </h1>
-  <strong>Product Details:</strong><br/>
+  <div class="container">
+  <div class="row">
   <%Product.all.each do |product|%>
-  <span>Title:</span>
-  <%= product.title %><br/>
-  <span>Description:</span>
-  
-  <%= product.description %><br/>
-  <span>Price:</span>
-  
-  <%= product.price %>
-  <%# <%debugger %>
-
-    <%=image_tag product.image , height: 300%>
+  <div class="card my-3">
+    <div class="card-body mx-auto d-flex justify-content-between">
+    <p class="card-item mx-4"><%=image_tag product.image , height: 200,class:"ml-4"%></p>
+        <div class="d-flex flex-column">
+      <p class="card-title">Title: <%= product.title %><br/></p >
+      
+      <p class="card-text">Description:<%= product.description %></p>
+     <p class="card-text"> <small>Price:</small><%= product.price %></p>
+      
+      </div>
+      <%# <%debugger %>
+    
+        </div>
+  </div>
 <%end%>
+</div>
+</div>
 </p>
-
-<%# <%= link_to 'Edit', edit_product_path(@product) %> %>

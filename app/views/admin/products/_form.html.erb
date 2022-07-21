@@ -1,5 +1,5 @@
 <div class="container mx-auto my-4"style="width:500px">
-    <%= simple_form_for [:admin,@product] do |f| %>
+    <%= simple_form_for [:admin,@product],local: true do |f| %>
         <div class="card">
             <div class="card-body"> 
                 <div class="my-3">
@@ -14,9 +14,12 @@
                 <div class="my-3" >
                     <%=f.input :image ,lable_html:{class:"form-lable ",for:"formFile"},class:"btn btn-info"%>   
                 </div>
+                <div class="my-3" >
+                    <%=f.association  :categories ,collection: Category.all, as: :check_boxes,include_hidden: false%>   
+                </div>
                 <%= f.button :submit , class:"btn btn-info my-3"%>
             </div>
         </div>
     <%end%>
-    <%# <%=link_to "back to product list",admin_product_path%> %>
+    <%=link_to "back to product list",admin_products_path%>
 </div>

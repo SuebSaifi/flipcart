@@ -19,10 +19,10 @@ class Admin::CategoriesController < ApplicationController
     end
   end
   def edit
-    @category =Catagory.find(params[:id])
+    @category =Category.find(params[:id])
   end
   def update
-    @category=Catagory.find(params[:id])
+    @category=Category.find(params[:id])
     if @category.update(catagory_params)
         flash[:notice]="Catagory Updated"
         redirect_to admin_categories_path
@@ -32,7 +32,7 @@ class Admin::CategoriesController < ApplicationController
     end
   end
   def destroy 
-    Catagory.destroy(params[:id])
+    Category.destroy(params[:id])
     flash[:notice]="Category removed!"
       redirect_to admin_products_path
   end

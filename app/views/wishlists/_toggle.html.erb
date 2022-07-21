@@ -1,0 +1,19 @@
+<div class="wishlists">	
+	<% pre_like = current_user.wishlists.where(product_id: product_id).exists?%>
+	<%if pre_like%>
+		<div class="dislist">
+		    <%wishlist=current_user.wishlists.find_by(product_id: product_id).id%>
+			<div id = "dislist">
+			    <%=button_to "/products/#{product_id}/wishlist/#{wishlist}",method: :delete,class:"destroy_like btn ", id:"icon",remote: true ,style:"text-decoration:none" do%>
+				    <i class="fa-solid fa-heart" style="color:rgb(249, 24, 128);"></i>
+				<%end%>
+			</div>
+		</div>
+	<%else%>  
+		<div id = "wishlist">
+			<%=button_to product_wishlists_toggle_path(product_id) ,method: :post,remote: true,id:"icon",style:"text-decoration:none",class:" btn " do %>
+				<span class="icon"><i class="fa-regular fa-heart" style="color:gray;"></i></span>
+			<%end%>
+		</div>
+	<%end%>    
+</div>

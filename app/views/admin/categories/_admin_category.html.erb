@@ -1,11 +1,13 @@
+<%Category.all.each do |cat|%>
 <tr>
     <td>
-        "#{admin_category.name}"
+        <%=cat.name%>
     </td>
      <td>
-        <%=link_to "Edit" , edit_admin_category_path(admin_category)%>
+        <%=link_to "Edit" , edit_admin_category_path(cat)%>
     </td>
      <td>
-         <%=link_to "Delete" , admin_category_path(admin_category),method: :delete%>
+         <%=link_to "Delete" , admin_category_path(cat),method: :delete%>
     </td>
 </tr>
+<%end%>

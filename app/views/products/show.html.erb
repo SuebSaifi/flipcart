@@ -1,7 +1,9 @@
+<div class="container mx-auto">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Product Details:</strong><br/>
+  <h1>Product Details:</h1><br/>
+    <%=image_tag @product.image , height: 300%><br/>
   <span>Title:</span>
   <%= @product.title %><br/>
   <span>Description:</span>
@@ -12,9 +14,9 @@
   <%= @product.price %>
   <%# <%debugger %>
 
-    <%=image_tag @product.image , height: 300%>
 
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
+</div>
