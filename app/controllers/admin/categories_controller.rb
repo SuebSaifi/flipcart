@@ -11,7 +11,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     @category=Category.new(catagory_params)
     if @category.save
-        flash[:notice]="Catagory create"
+        flash[:notice]="Category create"
         redirect_to admin_categories_path
     else
         flash[:error] = "Something went wrong"
@@ -24,7 +24,7 @@ class Admin::CategoriesController < ApplicationController
   def update
     @category=Category.find(params[:id])
     if @category.update(catagory_params)
-        flash[:notice]="Catagory Updated"
+        flash[:notice]="Category Updated"
         redirect_to admin_categories_path
     else
         flash[:error] = "Something went wrong"
@@ -34,7 +34,7 @@ class Admin::CategoriesController < ApplicationController
   def destroy 
     Category.destroy(params[:id])
     flash[:notice]="Category removed!"
-      redirect_to admin_products_path
+      redirect_to admin_categories_path
   end
 private
 def catagory_params

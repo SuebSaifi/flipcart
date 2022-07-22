@@ -1,16 +1,23 @@
 <div class="container my-3 d-flex">
 <%@wishlists.each do |wish|%>
-    <div class="card mx-4 " style="width: 18rem;">
-        <%if current_user.id == wish.user.id%>
+    <%if current_user.id == wish.user.id%>
+        <div class="card mx-4 " style="width: 18rem;">
             <div class="img">
+            <%if wish.product.image.present?%>
                 <%=image_tag wish.product.image ,class:"card-img-top",width: "286px",height: '200px'%>
+            <%else%>
+                 <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
+            <%end%>
             </div>
             <div class="card-body ">
                 <p class="card-text"><%=wish.product.title%>.</p>
                 <p class="card-text"><b><small>Rs. </small></b><%=wish.product.price%></p>
             </div>
-            <%= link_to "Add Cart", user_carts_path(product_id: wish.product), :method => :post ,class:"icon btn btn-info"%>  
-        <%end%>
-   </div>
+            <div class="">
+                <%=render "wishlists/toggle",product_id: wish.product.id%>
+                <%= button_to "Add Cart", user_carts_path(user_id: current_user.id,product_id: wish.product.id), :method => :post ,class:"icon btn btn-info"%>  
+            </div>
+       </div>
+    <%end%>
 <%end%>
 </div>

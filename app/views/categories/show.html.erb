@@ -7,7 +7,13 @@
   <%Product.all.each do |product|%>
   <div class="card my-3">
     <div class="card-body mx-auto d-flex justify-content-between">
-    <p class="card-item mx-4"><%=image_tag product.image , height: 200,class:"ml-4"%></p>
+    <p class="card-item mx-4">
+    <%if product.image.present?%>
+      <%=image_tag product.image , height: 200,class:"ml-4"%>
+      <%else%>
+        <%= image_tag "default/download.jpeg",width: "286px",height: '200px' %>
+      <%end%>
+    </p>
         <div class="d-flex flex-column">
       <p class="card-title">Title: <%= product.title %><br/></p >
       
@@ -18,8 +24,6 @@
     <%=render "wishlists/toggle",product_id: product.id%>
     </div>
       </div>
-      
-    
         </div>
   </div>
 <%end%>

@@ -2,12 +2,11 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   #  include ActiveStorageSupport::SupportForBase64
-
-  # has_one_attached :profile_image
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  validates :first_name, presence: true
+  validates :phone_number, presence: true
+  devise :database_authenticatable, :registerable,:recoverable, :rememberable, :validatable
   has_many :products
-  # has_one_attached :profile_image
+  has_one_attached :profile_image
   attr_writer :current_step
   has_many :wishlists, dependent: :destroy
   has_many :carts
@@ -20,11 +19,9 @@ class User < ApplicationRecord
   end
   
   def next_step
-  # debugger
     self.current_step = steps[steps.index(current_step) +1]
   end
   def pervious_step
-    # debugger
       self.current_step = steps[steps.index(current_step) -1]
     end
   def first_step?
@@ -34,3 +31,4 @@ class User < ApplicationRecord
     current_step==steps.last
   end
 end
+  

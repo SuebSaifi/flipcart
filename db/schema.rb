@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_132843) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -64,6 +64,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_132843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories_products", force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categories_products_on_category_id"
+    t.index ["product_id"], name: "index_categories_products_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "cart_id"
     t.datetime "created_at", null: false
@@ -86,7 +95,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_132843) do
     t.float "price"
     t.text "description"
     t.string "image"
-    t.integer "category_id"
     t.integer "user_id"
   end
 

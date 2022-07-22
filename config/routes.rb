@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   end
   root to: 'products#index'
   resources :users do 
-  get "wishlist" =>"wishlists#index"
-      resources :carts
-      resources :orders
+    get "wishlist" =>"wishlists#index"
+    resources :carts
+    resources :orders
   end
-  resources :products,only:[:index,:show] do 
+  resources :products,only:[:index,:show,:create,:new] do 
     post "wishlists/toggle"
     delete 'wishlist/:id',  to: 'wishlists#toggle'    
   end

@@ -14,14 +14,11 @@ class Admin::ProductsController < ApplicationController
         @product=Product.find(params[:id])   
     end
     def create
+      
       @product = Product.new(product_params)
     
       if @product.save
-          @category_array=params.dig(:product,:category_ids)
-          @category_array.each do |cat|
-          @category = Category.find(cat)
-          @product.categories << @category
-        end
+          
         flash[:success] = "Product successfully created"
        
         redirect_to admin_products_path
@@ -33,13 +30,8 @@ class Admin::ProductsController < ApplicationController
     
     def update 
       @product = Product.find(params[:id])
-      if @product.update(product_params)
-        @product.product_categories.destroy_all
-        @category_array=params.dig(:product,:category_ids)
-        @category_array.each do |cat|
-          @category = Category.find(cat)
-          @product.categories << @category
-        end
+        if @product.update(product_params)
+        
         flash[:success] = "Product successfully created"
         redirect_to admin_products_path
       else
@@ -48,6 +40,7 @@ class Admin::ProductsController < ApplicationController
       end
     end
     def destroy
+      @product = Product.find(params[:id])
       @product.destroy
       flash[:notice]="product removed!"
       redirect_to admin_products_path
@@ -58,7 +51,7 @@ class Admin::ProductsController < ApplicationController
     end
     
     def product_params
-      params.require(:product).permit(:title,:price,:description,:image,:category_ids=>[])
+      params.require(:product).permit(:title,:price,:description,:image,:user_id)
     end
     
   end

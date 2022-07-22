@@ -3,7 +3,11 @@
 
 <p>
   <h1>Product Details:</h1><br/>
-    <%=image_tag @product.image , height: 300%><br/>
+     <%if @product.image.present?%>
+      <%=image_tag @product.image ,class:"card-img-top",width: "0px",height: '386px',alt:"abcd"%>
+      <%else%>
+        <%= image_tag "default/download.jpeg",class:"card-img-top",width: "386px",height: '400px' %>
+      <%end%>
   <span>Title:</span>
   <%= @product.title %><br/>
   <span>Description:</span>

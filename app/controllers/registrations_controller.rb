@@ -7,9 +7,10 @@ class RegistrationsController < Devise::RegistrationsController
         @user=User.find(params[:id])
     end
     
-    def new 
+    def new
+    # debugger
         session[:user_params]||={}
-        @user = User.new(session[:user_params])
+        @user =User.new(session[:user_params])
         @user.current_step=session[:user_steps]
     end
     
@@ -17,12 +18,14 @@ class RegistrationsController < Devise::RegistrationsController
         session[:user_params].deep_merge!(sign_up_params) if params[:user]
         @user =User.new(session[:user_params])
         @user.current_step=session[:user_steps]
-        if params[:back_btn]
-            @user.pervious_step
-        elsif @user.last_step?
-            @user.save
-        else
-            @user.next_step
+        if @user.valid?
+            if params[:back_btn]
+                @user.pervious_step
+            elsif @user.last_step?
+                @user.save
+            else
+                @user.next_step
+            end
         end
         session[:user_steps]=@user.current_step
         if @user.new_record?
@@ -34,9 +37,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
     private
     def sign_up_params
-        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:admin,:saller,:buyer,:password,:password_confirmation)
+        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:admin,:saller,:buyer,:profile_image,:password,:password_confirmation)
     end
     def account_update_params 
-        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:password,:password_confirmation,:current_password)
+        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:profile_image,:password,:password_confirmation,:current_password)
     end
     end

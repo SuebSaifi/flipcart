@@ -1,14 +1,11 @@
 class CartsController < ApplicationController
     def index
-        @carts=Cart.all
+        @carts=current_user.carts.all
     end
  
-    def new
-        @cart = current_user.carts.build
-    end
-    
+
     def create
-        @cart = current_user.carts.build(product_id: params[:product_id])
+        @cart =Cart.create!(product_id: params[:product_id],user_id: current_user.id)        
         if @cart.save 
         flash[:notice]="Added to Cart Successfully"
             redirect_to user_carts_path

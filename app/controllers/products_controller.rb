@@ -34,7 +34,7 @@ before_action :set_product, only: %i[ show edit update destroy ]
   end
   
   def product_params
-    params.require(:product).permit(:title,:price,:description)
+    params.require(:product).permit(:title,:price,:description,:image)
   end
   
 end
