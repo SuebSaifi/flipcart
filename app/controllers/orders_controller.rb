@@ -6,10 +6,14 @@ class OrdersController < ApplicationController
         @order=current_user.orders.build
     end
     def create 
-        @order=current_user.orders.create(cart_id: params[cart_id])
-        if @order.save
-            flash[:notice]="Odered Successfully"
-            redirect_to user_orders_path
+        @order = Order.new(order_params)
+        @current_cart.line_items.each do |item|
+            @order.line_items << item
+            item.cart_id = nil
         end
+        @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        redirect_to root_path
     end
 end

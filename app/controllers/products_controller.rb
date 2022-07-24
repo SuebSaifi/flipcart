@@ -14,8 +14,13 @@ before_action :set_product, only: %i[ show edit update destroy ]
       @product=Product.find(params[:id])   
   end
   def create
-    @product = current_user.products.build(product_params)
+    @product = Product.new(product_params)
     if @product.save
+      @category_array = params.dig(:product,:categories_ids)
+      @category_array.each do |cat|
+        @caregory=Category.find(cat)
+        @product.categories << @caregory
+      end
       flash[:success] = "Object successfully created"
       redirect_to @product
     else

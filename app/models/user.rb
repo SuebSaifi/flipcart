@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   devise :database_authenticatable, :registerable,:recoverable, :rememberable, :validatable
   has_many :products
-  has_one_attached :profile_image
+  has_one_attached :avatar
   attr_writer :current_step
   has_many :wishlists, dependent: :destroy
   has_many :carts

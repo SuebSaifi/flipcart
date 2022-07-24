@@ -5,6 +5,7 @@
   <div class="container">
   <div class="row">
   <%Product.all.each do |product|%>
+   <%if @category.id == product.category_id%>
   <div class="card my-3">
     <div class="card-body mx-auto d-flex justify-content-between">
     <p class="card-item mx-4">
@@ -26,6 +27,7 @@
       </div>
         </div>
   </div>
+<%end%>
 <%end%>
 </div>
 </div>

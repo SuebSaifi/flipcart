@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_175123) do
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.string "author_type"
+    t.integer "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -47,8 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "carts", force: :cascade do |t|
@@ -65,27 +79,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
   end
 
   create_table "categories_products", force: :cascade do |t|
-    t.integer "category_id"
+    t.integer "category_id", null: false
+    t.integer "product_id", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "quantity"
     t.integer "product_id"
+    t.integer "cart_id"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_categories_products_on_category_id"
-    t.index ["product_id"], name: "index_categories_products_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "product_categories", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_product_categories_on_category_id"
-    t.index ["product_id"], name: "index_product_categories_on_product_id"
+    t.string "name"
+    t.string "email"
+    t.text "address"
   end
 
   create_table "products", force: :cascade do |t|
@@ -96,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
     t.text "description"
     t.string "image"
     t.integer "user_id"
+    t.integer "category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -112,7 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
     t.integer "phone_number"
     t.boolean "buyer", default: true
     t.boolean "saller", default: false
-    t.string "profile_image"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -126,6 +140,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_105144) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "product_categories", "categories"
-  add_foreign_key "product_categories", "products"
 end
