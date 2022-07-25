@@ -1,3 +1,3 @@
 class Order < ApplicationRecord
-    # has_many :carts
+    belongs_to :carts ,:class_name => "Carts"
 end

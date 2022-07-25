@@ -5,8 +5,5 @@
   <p>Email: <%= order.email %></p>
   <p>Line Items: </p>
   <ul>
-    <% order.cart.each do |item| %>
-    <%= item.product.name %></li>
-    <% end %>
   </ul>
 <% end%>

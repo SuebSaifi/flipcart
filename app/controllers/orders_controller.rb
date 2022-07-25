@@ -3,17 +3,21 @@ class OrdersController < ApplicationController
         @orders=Order.all        
     end
     def new 
-        @order=current_user.orders.build
+        @order=Order.new
     end
     def create 
-        @order = Order.new(order_params)
-        @current_cart.line_items.each do |item|
-            @order.line_items << item
-            item.cart_id = nil
+        @cart=Cart.find(params[:id])
+        @order = current_user.order.build(order_params)
+        current_user.carts.each do |item|
+          item
         end
         @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        redirect_to root_path
+        OrderMailer.with(user: current_user,order:@order).order_created.deliver_later
+        redirect_to user_orders_path
     end
+    private
+    
+def order_params
+    params.require(:order).permit(:email,:name ,:address,:cart_id)
+end
 end

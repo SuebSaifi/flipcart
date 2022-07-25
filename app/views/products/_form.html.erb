@@ -2,6 +2,7 @@
     <%= simple_form_for(@product,html:{"turbo-data"=>'false'}) do |f| %>
         <div class="card">
             <div class="card-body"> 
+            <%= f.hidden_field :user_id ,value: current_user.id%>
                 <div class="my-3">
                     <%=f.input :title,label:"Title of Product", input_html:{class:"form-control" },wrapper: false,lable_html:{class:"label"},placeholder:"Title the product",autofocus:true%>
                 </div>
@@ -14,6 +15,9 @@
                 <div class="my-3" >
                     <%=f.input :image ,lable_html:{class:"form-lable ",for:"formFile"},class:"btn btn-info"%>   
                 </div>
+                <div class="my-3" >
+                <span>Categories:</span><%=f.collection_select(:category_id, Category.all, :id, :name)%>
+                 </div>
                 <%= f.button :submit , class:"btn btn-info my-3"%>
             </div>
         </div>

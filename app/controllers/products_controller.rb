@@ -16,11 +16,6 @@ before_action :set_product, only: %i[ show edit update destroy ]
   def create
     @product = Product.new(product_params)
     if @product.save
-      @category_array = params.dig(:product,:categories_ids)
-      @category_array.each do |cat|
-        @caregory=Category.find(cat)
-        @product.categories << @caregory
-      end
       flash[:success] = "Object successfully created"
       redirect_to @product
     else
@@ -39,7 +34,7 @@ before_action :set_product, only: %i[ show edit update destroy ]
   end
   
   def product_params
-    params.require(:product).permit(:title,:price,:description,:image)
+    params.require(:product).permit(:title,:price,:description,:image,:user_id,:category_id)
   end
   
 end
