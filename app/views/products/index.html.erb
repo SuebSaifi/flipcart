@@ -22,7 +22,7 @@
       <div class="d-flex " id='wish_<%=product.id%>'>
        <%= button_to "Add Cart", user_carts_path(user_id: current_user.id,product_id: product.id), :method => :post %>  
        </div>
-       <%=button_to 'Buy Now',checkout_create_path,method: :post,params:{id: product.id},remote: true%>
+       <%=button_to 'Buy Now',checkout_create_path,params: [id: product.id],remote: true,id:"checkout-button"%>
        </div>
     </div>
 <%end%>

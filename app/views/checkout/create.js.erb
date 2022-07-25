@@ -1,7 +1,9 @@
-var stripe = Stripe(<%=Rails.Application.credentials[:stripe][:public]%>);
-
+var stripe = Stripe('pk_test_51LP9pQSFrJOyIwkhzst3OQWSF0qTjyCzYjA2UlZmSoqlzs8CFnOMS3TV3a9Wz560vn1orZV3SoPErGD7cUK5Ml37003RHshMn9');
+$('#checkout-button').on('click', function() {
   stripe.redirectToCheckout({
-    sessionId: <%=@session.id%>
-  }).then(function (result) {
-    
+    sessionId: "#{<%=@session.id%>}"
+    <%# <%debugger%>
+  }).then(function(result) {
+    console.log(result.error.message)
   });
+});

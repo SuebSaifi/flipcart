@@ -1,0 +1,5 @@
+stripe:
+	secret: sk_test_51LP9pQSFrJOyIwkhmOyqzwWjSn2n7ogX8xILOP4q7GMwshlD8niwlK7IG0gjJ7gi9PmrntHraDeGV5imljYrHDNy00M6NNzOrB
+	public: pk_test_51LP9pQSFrJOyIwkhzst3OQWSF0qTjyCzYjA2UlZmSoqlzs8CFnOMS3TV3a9Wz560vn1orZV3SoPErGD7cUK5Ml37003RHshMn9
+
+
