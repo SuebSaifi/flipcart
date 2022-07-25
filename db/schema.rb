@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_061523) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_25_114807) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -147,7 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_061523) do
     t.integer "phone_number"
     t.boolean "buyer", default: true
     t.boolean "saller", default: false
-    t.string "profile_image"
     t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -53,6 +53,8 @@ gem 'simple_form'
 gem 'activeadmin'
 gem 'sass-rails'
 gem 'stripe'
+            end
+            end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

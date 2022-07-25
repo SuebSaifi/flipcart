@@ -30,5 +30,9 @@ class User < ApplicationRecord
   def last_step?
     current_step==steps.last
   end
+  def second_step?
+  current_step==steps[1]
+end
+  
 end
   

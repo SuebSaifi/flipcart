@@ -17,7 +17,7 @@
          <%=button_to "Remove" , "/users/#{current_user.id}/carts/#{cart.id}",method: :delete ,class:"btn btn-danger"%>
     </td>
      <td>
-        <%=link_to "Buy" ,user_cart_order_path(cart_id:cart.id),method: :post,cart_id: cart.id,class:"btn btn-success"%>
+       <%=button_to 'Buy Now',checkout_create_path,method: :post,params:{id: cart.product.id},remote: true%>
     </td>
 </tr>
 <%end%>
