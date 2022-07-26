@@ -17,7 +17,7 @@
             <div id="wish_<%=wish.product.id%>">
                 <%=render "wishlists/toggle",product_id: wish.product.id%>
             </div>
-                <%= button_to "Add Cart", user_carts_path(user_id: current_user.id,product_id: wish.product.id), :method => :post ,class:"icon btn btn-info"%>  
+                <%=button_to "Add to cart", line_items_path(:product_id => wish.product.id)%>
             </div>
        </div>
     <%end%>

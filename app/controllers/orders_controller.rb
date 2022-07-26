@@ -7,20 +7,24 @@ class OrdersController < ApplicationController
     def new 
         @order=Order.new
     end
-    def create 
-        # debugger    
-        @product=Product.find_by(params[:id])   
-        @order = @product.orders.new(order_params)
-        if @order.save
-        OrderMailer.with(user: current_user,order:@order).order_created.deliver_later
-            redirect_to user_orders_path
-        else
-        render "new"
+    def create
+        @order = Order.new(order_params)
+        @current_cart.line_items.each do |item|
+          @order.line_items.push(item)
+          item.cart_id = nil
         end
-    end
+        if @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        redirect_to orders_path
+        else
+            render 'new'
+        end
+      end
+      
     private
 
     def order_params
-    params.require(:order).permit(:user_id,:email,:name ,:address,:product_id)
+    params.require(:order).permit(:email,:name ,:address)
 end
 end

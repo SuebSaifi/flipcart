@@ -1,15 +1,24 @@
-class Cart < ApplicationRecord
-    belongs_to :user
-    belongs_to :product
-    def current_user_cart
-        "cart#{id}"
+class Cart <  ActiveRecord::Base
+    has_many :line_items, dependent: :destroy
+    has_many :products, through: :line_items
+  
+    # LOGIC
+    def sub_total
+      sum = 0
+      self.line_items.each do |line_item|
+        sum+= line_item.total_price
+      end
+      return sum
     end
-    def total_count
-        cat=0
-        user.carts.map do |cart|
-        cat=cat+cart.product.price
-    end
-    cat
-    end
+    # def current_user_cart
+    #     "cart#{id}"
+    # end
+    # def total_count
+    #     cat=0
+    #     user.carts.map do |cart|
+    #     cat=cat+cart.product.price
+    # end
+    # cat
+    # end
   
 end
