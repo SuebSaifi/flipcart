@@ -1,9 +1,14 @@
 <h2>All Orders</h2>
 
 <% @orders.each do |order| %>
+<%if current_user.id == order.user_id%>
   <p>Name: <%= order.name %></p>
   <p>Email: <%= order.email %></p>
+  <p>Address: <%=order.address%>
   <p>Line Items: </p>
   <ul>
+    <%=order.product.title%>
   </ul>
+   <%=button_to 'Buy Now',checkout_create_path,method: :post,params:{id: order.product.id},remote: true%>
+<% end%>
 <% end%>

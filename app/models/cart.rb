@@ -1,7 +1,6 @@
 class Cart < ApplicationRecord
     belongs_to :user
     belongs_to :product
-    has_many :order,:class_name => 'Order'
     def current_user_cart
         "cart#{id}"
     end

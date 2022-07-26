@@ -8,10 +8,9 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :users do 
     get "wishlist" =>"wishlists#index"
-    resources :carts do
-    # resources :orders
+    resources :carts 
+    resources :orders
     get "order" =>"orders#new"
-    end
   end
   resources :products,only:[:index,:show,:create,:new] do 
     post "wishlists/toggle"
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
   resources :categories,only:[:show]
   resources :user_steps
   resources :checkout,only:[:create]
-  post 'checkout/create',to: "checkout#create"
+  post 'checkout/create',to: "checkout#create",:defaults => { :format => 'js' }
   # post 'line_items/:id/add' => "line_items#add_quantity", as: "line_item_add"
   # post 'line_items/:id/reduce' => "line_items#reduce_quantity", as: "line_item_reduce"
   # post 'line_items' => "line_items#create"

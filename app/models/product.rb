@@ -5,4 +5,5 @@ class Product < ApplicationRecord
    has_many :carts, dependent: :destroy
    has_many :categories_product 
    has_many :categories ,through: :categories_product
+   has_many :orders
 end
