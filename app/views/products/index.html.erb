@@ -13,7 +13,9 @@
     </div>
      <div class="card-body">
       <b class="card-text"><span>Price:</span><%=product.price%></b>
+      <%=product.stripe_product_id%>
     </div>
+    
       <%=link_to "#{product.title}",product_path(product.id)%>
        <%# <%debugger%>   
       <div class="d-flex " id='wish_<%=product.id%>'>

@@ -1,6 +1,7 @@
 <h2>All Orders</h2>
 <div class="container">
 <% @orders.each do |order| %>
+<%if current_user.id == order.user_id%>
   <p>Name: <%= order.name %></p>
   <p>Email: <%= order.email %></p>
   <p>Line Items: </p> 
@@ -14,4 +15,5 @@
   </ul>
 <hr>
 <% end%>
+<%end%>
 </div>

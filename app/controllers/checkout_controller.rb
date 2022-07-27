@@ -3,7 +3,7 @@ class CheckoutController < ApplicationController
       product=Product.find(params[:id])
       # debugger
       @session = Stripe::Checkout::Session.create({
-        customer: current_user,
+        customer: current_user.stripe_customer_id,
        payment_method_types: ['card'],
        
         line_items: [{
@@ -22,8 +22,8 @@ class CheckoutController < ApplicationController
   end
 
   def success 
-    @session_with_expand =Stripe::Checkout::Session.retrieve({id:params[:session_id],expand:['line_items']})
-    @session_with_expand.line_items.data.each do |line_item|
+      @session_with_expand =Stripe::Checkout::Session.retrieve({id:params[:session_id],expand:['line_items']})
+      @session_with_expand.line_items.data.each do |line_item|
       product = Product.find_by(stripe_product_id: line_item.price.product)
     end
     end
