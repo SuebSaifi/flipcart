@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
     def create
       product=Product.find(params[:id])
+      @order = current_user.orders.build(job_params)
       # debugger
       @session = Stripe::Checkout::Session.create({
        payment_method_types: ['card'],

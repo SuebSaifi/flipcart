@@ -1,12 +1,17 @@
 <h2>All Orders</h2>
-
+<div class="container">
 <% @orders.each do |order| %>
   <p>Name: <%= order.name %></p>
   <p>Email: <%= order.email %></p>
   <p>Line Items: </p> 
   <ul>
     <% order.line_items.each do |item| %>
-    <li><%= item.quantity %> x <%= item.product %></li>
+   <li> <span>Name: </span><%= item.product.title  %></li>
+    <li><span>Quantity: </span><%= item.quantity %> x <%= item.product.title  %></li>
+    <li><span>Price: </span><%= item.product.price %>
+    
     <% end %>
   </ul>
+<hr>
 <% end%>
+</div>
