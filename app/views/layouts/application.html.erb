@@ -48,6 +48,7 @@
         
       </ul>
     <%if user_signed_in?%>
+    <%=current_user.stripe_customer_id%>
     <ul class="navbar-nav  mb-2 mb-lg-0">
         <li>
           <%=link_to "Wishlist",user_wishlist_path(current_user),class:"nav-link"%>
