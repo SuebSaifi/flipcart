@@ -17,6 +17,7 @@
       <%=product.stripe_price_id%>
     </div>
     
+    
       <%=link_to "#{product.title}",product_path(product.id)%>
        <%# <%debugger%>   
       <div class="d-flex " id='wish_<%=product.id%>'>
@@ -26,14 +27,14 @@
       <div class="d-flex " id='wish_<%=product.id%>'>
        <%=button_to "Add to cart", line_items_path(:product_id => product.id)%>
        </div>
-       <%=button_to 'Buy Now','javascript:',onclick:"goToCheckout(#{product.id})", id:"checkout-button" %>
+       <%# <%=button_to 'Buy Now','javascript:',onclick:"goToCheckout(#{product.id})", id:"checkout-button" %> 
      
     </div>
 <%end%>
 </div>
 <%end%>
 
-<script>
+<%# <script>
   function goToCheckout(id){
     console.log("test")
     $.ajax({
@@ -43,4 +44,4 @@
       data: {id: id}
     })
   }
-</script>
+</script> %>

@@ -29,3 +29,5 @@
 </tr>
 <%end%>
        <%= link_to "Proceed to checkout", new_order_path %><br>
+       <%=button_to 'Buy Now',checkout_create_path,method: :post,remote: true,class:"sm"%>
+<%# <%=@current_cart.line_items.collect{|i|i.to_builder.attributes!}%> 

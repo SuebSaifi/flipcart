@@ -4,16 +4,21 @@
 <%if current_user.id == order.user_id%>
   <p>Name: <%= order.name %></p>
   <p>Email: <%= order.email %></p>
-  <p>Line Items: </p> 
+  <p>Address: <%= order.address %></p>
+    <p>Line Items: </p> 
   <ul>
     <% order.line_items.each do |item| %>
    <li> <span>Name: </span><%= item.product.title  %></li>
-    <li><span>Quantity: </span><%= item.quantity %> x <%= item.product.title  %></li>
+    <li><span>Quantity: </span><%= item.quantity %>
     <li><span>Price: </span><%= item.product.price %>
-    
+
     <% end %>
   </ul>
-<hr>
+<%# <hr>
+       <%=button_to 'Buy Now',checkout_create_path,params:[:line_items=>order.line_items],method: :post,remote: true,class:"sm"%> %>
 <% end%>
 <%end%>
 </div>
+<%# <%if Order.last%> %>
+<%# <%=@orders.last.line_items.collect{|i|i.to_builder.attributes!}%> %>
+<%# <%end%> %>
