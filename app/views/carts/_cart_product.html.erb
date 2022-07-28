@@ -32,9 +32,9 @@
 <%if @cart.line_items.present?%>
 
 
-       <%# <%= link_to "Proceed to checkout", new_order_path ,class:"btn btn-info"%><br>
+       <%= link_to "Proceed to checkout", new_order_path ,class:"btn btn-info"%><br>
     
        <%end%>
-       <%=button_to 'Buy Now',checkout_create_path,method: :post,remote: true,class:"sm"%>
+       <%# <%=button_to 'Buy Now',checkout_create_path,method: :post,remote: true,class:"sm"%> %>
        
 <%# <%=@current_cart.line_items.collect{|i|i.to_builder.attributes!} %>

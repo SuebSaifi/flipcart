@@ -52,20 +52,15 @@ class CheckoutController < ApplicationController
           }
         },
       ],
-      line_items: [@current_order.line_items.collect{|i|i.to_builder.attributes!}],
+      line_items: [Order.last.line_items.collect{|i|i.to_builder.attributes!}],
         mode: 'payment',
         success_url:orders_url,
         cancel_url: root_url,
       })  
-     
-      
       respond_to do |format|
         format.js
       end
-      
-
   end
-
   def success 
       @current_cart.destroy
       Cart.destroy(session[:cart_id])
@@ -74,5 +69,4 @@ class CheckoutController < ApplicationController
       product = Product.find_by(stripe_product_id: line_item.price.product)
     end
     end
-
 end

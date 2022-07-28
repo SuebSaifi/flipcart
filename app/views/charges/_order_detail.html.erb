@@ -1,6 +1,0 @@
-<%@current_order.line_items.each do |p|%>
-<%=p.product.title%>
-
-<%end%>
-
-   <%=f.hidden_field :order_id,value: @current_order.id%>

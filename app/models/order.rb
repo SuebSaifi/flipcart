@@ -4,7 +4,7 @@ class Order < ApplicationRecord
     has_many :charges
     attr_writer :current_step
     def steps
-      %w[user_order_detail user_address_detail confirmation]
+        %w[user_detail order_detail confirmation]
     end
     def current_step
         @current_step || steps.first
@@ -21,7 +21,5 @@ class Order < ApplicationRecord
     def last_step?
       current_step==steps.last
     end
-    def second_step?
-    current_step==steps[1]
-  end
+  
 end

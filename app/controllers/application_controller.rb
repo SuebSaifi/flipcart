@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :current_cart
-  before_action :current_order
+#   before_action :current_order
   private
     def current_cart
       # debugger
@@ -22,22 +22,27 @@ class ApplicationController < ActionController::Base
       end
     end
     
-    def current_order
-      if session[:order_id]
-        order=Order.find_by(:id=>session[:order_id])
-        if order.present?
-            @current_order = order
-          end
-        else
-          session[:order_id] = nil
-        end
+    # def current_order
+    #   if session[:order_id]
+    #     order=Order.find_by(:id=>session[:order_id])
+    #     if order.present?
+    #         @current_order = order
+    #       end
+    #     else
+    #       session[:order_id] = nil
+    #     end
         
-        if session[:order_id] == nil
-          @current_order = Order.new
-          @current_cart.line_items.each do |item|
-            @current_order.line_items.push(item)
-            # item.update(cart_id: nil)
-            end
-        end
-    end
+    #     if session[:order_id] == nil
+    #         if user_signed_in?
+    #       @current_order = current_user.orders.new
+    #       @current_cart.line_items.each do |item|
+    #         @current_order.line_items.push(item)
+    #         # item.update(cart_id: nil)
+    #         end
+    #         if @current_order.save
+    #             session[:order_id] = @current_order.id
+    #            end
+    #     end
+    #     end
+    # end
 end
