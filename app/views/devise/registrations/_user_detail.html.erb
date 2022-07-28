@@ -12,6 +12,15 @@
      <div class="field my-2" >
       <%= f.input :email,required: true,input_html: {class:"form-control textarea floatingInput"},wrapper: false,label_html:{class:"floatingInput"},placeholder:"Enter Your Email"%>
     </div>
+    <div class="field my-2" >
+      <%= f.input :line_address,required: true,input_html: {class:"form-control textarea floatingInput"},wrapper: false,label_html:{class:"floatingInput"},placeholder:"Enter Your Line Address"%>
+    </div>
+    <div class="field my-2" >
+      <%= f.input :state,required: true,input_html: {class:"form-control textarea floatingInput"},wrapper: false,label_html:{class:"floatingInput"},placeholder:"Enter Your State"%>
+    </div>
+    <div class="field my-2" >
+      <%= f.input :pincode,required: true,input_html: {class:"form-control textarea floatingInput"},wrapper: false,label_html:{class:"floatingInput"},placeholder:"Enter Your Pincode"%>
+    </div>
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>

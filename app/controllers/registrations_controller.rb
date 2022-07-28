@@ -40,7 +40,7 @@ class RegistrationsController < Devise::RegistrationsController
     end
     private
     def sign_up_params
-        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:admin,:password,:password_confirmation)
+        params.require(:user).permit(:first_name,:last_name,:email,:phone_number,:admin,:line_address,:state,:pincode,:password,:password_confirmation)
     end
     def sign_update_params
         params.require(:user).permit(:saller,:buyer,:avatar)

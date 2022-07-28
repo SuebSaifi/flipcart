@@ -72,7 +72,7 @@
     <%end%>
     </p>
     <p class="my-1">
-    <%= button_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-info"%>
+    <%= link_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-info"%>
     </p>
     <%else%>
     <p class="my-1" >

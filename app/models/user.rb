@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :wishlists, dependent: :destroy
   has_many :carts
   has_many :orders
-  has_many :products,dependent: :destroy  
+  has_many :products,dependent: :destroy 
+  has_many :charges
   def current_step
     @current_step || steps.first
   end

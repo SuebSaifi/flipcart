@@ -1,0 +1,16 @@
+<div class="container mx-auto my-4"style="width:400px">
+<h2>Sign up</h2>
+
+
+<%= simple_form_for(@charge,html:{'data-turbo'=> 'false'}) do |f| %>
+
+  <%=render :partial => "#{@charge.current_step}" ,:locals=>{:f=>f}%>
+  <div class="actions my-4">
+    <%= f.button :submit, "Continue",class:"btn btn-success" %>
+  </div>
+  <div class="actions my-4">
+    <%= f.button :submit ,"back",class:"btn btn-info" ,name:"back_btn" unless @charge.first_step?%>
+  </div>
+<% end %>
+
+</div>
