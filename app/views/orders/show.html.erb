@@ -1,0 +1,30 @@
+<div class="d-flex flex-wrap mx-3">
+<%@order.line_items.each do |order|%>
+    <%# <%=product.title%>
+   <div class="card mx-4 my-3" style="width: 18rem;">
+     <%if order.product.image.present?%>
+      <%=image_tag order.product.image ,class:"card-img-top",width: "286px",height: '200px',alt:"abcd"%>
+      <%else%>
+        <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
+      <%end%>
+    <div class="card-body">
+      <p class="card-text"><%=order.product.description%>.</p>
+    </div>
+     <div class="card-body">
+      <b class="card-text"><span>Price:</span><%=order.product.price%></b>
+    </div>
+    </div>
+<%end%>
+     <%=button_to 'Buy Now','javascript:',onclick:"goToCheckout(#{@order.id})", id:"checkout-button"%>
+</div>
+<script>
+  function goToCheckout(id){
+    console.log("test")
+    $.ajax({
+      url: '/checkout/create',
+      type: 'POST',
+      dataType: 'script',
+      data: {id: id}
+    })
+  }
+</script>

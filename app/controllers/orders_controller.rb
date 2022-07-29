@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
     def index
-        @orders = Order.all
+        @orders = Order.where(:is_paid=>true)
       end
     
       def show
@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
       end
       def new
         session[:order_params]||={}
-        @order =Order.new(params[:order_params])
+        @order =Order.new(session[:order_params])
         @order.current_step=session[:order_steps]
       end
       def create
@@ -25,16 +25,18 @@ class OrdersController < ApplicationController
             @order.save
             Cart.destroy(session[:cart_id])
             session[:cart_id] = nil
-            # redirect_to orders_path
-            session[:order_params]
         else
         @order.next_step
         end
-        session[:order_steps]=@order.current_step
-        render 'new'
-
-        
-     
+          session[:order_steps]=@order.current_step       
+       if @order.new_record?
+          render "new"
+        else
+          session[:order_step] = session[:order_params] = nil
+          flash[:notice] = "Order saved!"
+          redirect_to @order
+        end
+           
   end
     private
 

@@ -13,8 +13,6 @@
     </div>
      <div class="card-body">
       <b class="card-text"><span>Price:</span><%=product.price%></b>
-      <%=product.stripe_product_id%>
-      <%=product.stripe_price_id%>
     </div>
     
     
@@ -27,12 +25,14 @@
       <div class="d-flex " id='wish_<%=product.id%>'>
        <%=button_to "Add to cart", line_items_path(:product_id => product.id)%>
        </div>
-       <%# <%=button_to 'Buy Now','javascript:',onclick:"goToCheckout(#{product.id})", id:"checkout-button" %> 
      
     </div>
 <%end%>
 </div>
 <%end%>
+      <%# <%=product.stripe_product_id%>
+      <%# <%=product.stripe_price_id%>
+       <%# <%=button_to 'Buy Now','javascript:',onclick:"goToCheckout(#{product.id})", id:"checkout-button" %> 
 
 <%# <script>
   function goToCheckout(id){

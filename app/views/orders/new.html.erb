@@ -3,12 +3,13 @@
 <%=form_for(@order,html:{"data-turbo"=>'false'}) do |f| %>
   <%=render :partial => "#{@order.current_step}" ,:locals=>{:f=>f}%>
   <div class="actions my-4">
-    <%= f.submit "Continue" ,desable: true%>
+    <%= f.submit "Continue" %>
   </div>
   <div class="actions my-4">
     <%= f.submit "back",name:"back_btn" unless @order.first_step? %>
   </div>
-<%# <%=button_to 'Buy Now',checkout_create_path,method: :post,remote: true if @order.last_step?%> 
 <% end %>
+
 </div>
 </div>
+<>

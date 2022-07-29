@@ -13,6 +13,9 @@
                     <%=render "cart_product" %>
                 <tbody>
             </table>
+        <tfoot>
+            <th>Grand Total</th><%=@current_cart.sub_total%>  
+        </tfoot>
         </div>
     </div>
 </div>

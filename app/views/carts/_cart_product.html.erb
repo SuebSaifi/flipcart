@@ -22,9 +22,6 @@
         <%= button_to "Remove item", line_item_path(cart), method: :delete %>
     </td>
      <td>
-       <%# <%=button_to 'Buy Now',checkout_create_path,method: :post,params:{id: cart.product.id},remote: true%>
-
-        <%# <%=link_to "Buy" ,"/users/#{current_user.id}/order",method: :get,params:[product_id:cart.product.id],class:"btn btn-success"%>
     </td>
 </tr>
 <%end%>
@@ -35,6 +32,3 @@
        <%= link_to "Proceed to checkout", new_order_path ,class:"btn btn-info"%><br>
     
        <%end%>
-       <%# <%=button_to 'Buy Now',checkout_create_path,method: :post,remote: true,class:"sm"%> %>
-       
-<%# <%=@current_cart.line_items.collect{|i|i.to_builder.attributes!} %>

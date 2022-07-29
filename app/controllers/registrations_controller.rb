@@ -34,6 +34,7 @@ class RegistrationsController < Devise::RegistrationsController
         if @user.new_record?
             render 'new'        
         else
+            session[:user_step] = session[:user_params] = nil
             flash[:notice] = "User Has been successfully sign up"
             redirect_to root_path
         end
