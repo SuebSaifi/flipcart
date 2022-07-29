@@ -41,8 +41,8 @@ end
     email
   end
   after_create do
-    customer = Stripe::Customer.create(email:email)
-    update(stripe_customer_id: customer.id)
+    order = Stripe::Order.create(id:id)
+    update(stripe_order_id: order.id)
   end
 end
   
