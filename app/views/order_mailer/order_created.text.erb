@@ -1,3 +1,21 @@
-Order#order_created
+You got a new order from <%= @order.name %>!
+===============================================
 
-<%= @greeting %>, find me in app/views/order_mailer/order_created.text.erb
+Order Details:
+--------------------------
+<%@order.line_items.each do |item|%>
+   Product_id: <%=item.product.stripe_product_id%>
+   Product_Title: <%=item.product.title%>
+   Peoduct_Quantity: <%=item.quantity%>
+   Price: <%=item.product.price%>
+   Paid_status: <%=@order.is_paid%>
+
+<%end%>
+
+Name: <%= @order.name %>
+Email: <%= @order.email %>
+Address: <%= @order.address %>
+Phone: <%= @order.phone_number %>
+Phone: <%= @order.pincode %>
+Phone: <%= @order.state %>
+

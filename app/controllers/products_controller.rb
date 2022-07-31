@@ -17,7 +17,7 @@ before_action :set_product, only: %i[ show edit update destroy ]
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:success] = "Object successfully created"
+      flash[:success] = "Product successfully Added"
       redirect_to @product
     else
       flash[:error] = "Something went wrong"

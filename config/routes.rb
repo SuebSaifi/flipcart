@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   resources :charges
   resources :orders
   resources :products,only:[:index,:show,:create,:new] do 
-    post "wishlists/toggle"
-    delete 'wishlist/:id',  to: 'wishlists#toggle'    
+    post "wishlists/toggle",  to: 'wishlists#toggle'
+    delete 'wishlist/:id',  to: 'wishlists#toggle' 
   end
   resources :categories,only:[:show]
   resources :user_steps

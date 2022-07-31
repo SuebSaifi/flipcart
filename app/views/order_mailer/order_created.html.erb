@@ -1,5 +1,22 @@
 <h1>Order#order_created</h1>
+<p>You got a new order from <%= @order.name %>!</p>
+    <p>
+    Order details<br>
+    <%@order.line_items.each do |item|%>
+   Product_id: <%=item.product.stripe_product_id%><br/>
+   Product Title: <%=item.product.title%><br/>
+   Peoduct Quantity: <%=item.quantity%><br/>
+   Product Base Price: <%=item.product.price%><br/>
+   Paid Status: <%=@order.is_paid%><br/>
 
-<p>
-  <%= @greeting %>, find me in app/views/order_mailer/order_created.html.erb
-</p>
+<%end%><br/>
+    --------------------------
+    </p>
+    <p>Name: <%= @order.name %></p>
+    <p>Email: <%= @order.email %></p>
+    <p>Address: <%= @order.address %></p>
+    <p>Phone: <%= @order.phone_number %></p>
+    <p>
+    Message:<br>
+    ----------
+    </p>

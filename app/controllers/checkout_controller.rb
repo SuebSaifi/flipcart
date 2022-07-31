@@ -6,6 +6,7 @@ class CheckoutController < ApplicationController
       customer: current_user.stripe_customer_id,
       payment_method_types: ['card'],
       line_items: [@order.line_items.collect{|i|i.to_builder.attributes!}],
+      metadata:  {id: params[:id]},
       mode: 'payment',
       success_url:orders_url,
       cancel_url: root_url,

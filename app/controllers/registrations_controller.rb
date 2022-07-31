@@ -22,8 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
             if params[:back_btn]
                 @user.pervious_step
             elsif @user.second_step?
-                @user.update(sign_update_params)          
-                
+                @user.update(sign_update_params)                   
             elsif @user.last_step?
                 @user.save
             else
@@ -36,7 +35,7 @@ class RegistrationsController < Devise::RegistrationsController
         else
             session[:user_step] = session[:user_params] = nil
             flash[:notice] = "User Has been successfully sign up"
-            redirect_to root_path
+            redirect_to users_sign_in_path
         end
     end
     private

@@ -18,85 +18,75 @@
   </head>
 
   <body>
-  <div class="stnav">
-   <div class="notice text-center fw-bolder">
-   <%if flash[:notice] %>
-    <div class="notification is-primary global-notification",style="position:relative">
-    <p class="notice"><%=notice%></p>
-    </div>
-    <%end%>
-    </div>
-    <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <%=link_to "Flipcart",root_path,class:"navbar-brand" %>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-        </li>
-        <%Category.all.each do |category|%>
-        <li class="nav-item">
-        <%if user_signed_in?%>
-          <%=link_to category.name.capitalize,category_path(category),class:"nav-link"%>
-          <%end%>
-        </li>
-          
-        
+    <div class="stnav">
+      <div class="notice text-center fw-bolder">
+        <%if flash[:notice] %>
+          <div class="notification is-primary global-notification",style="position:relative">
+            <p class="notice"><%=notice%></p>
+          </div>
         <%end%>
-        
-      </ul>
-    <%if user_signed_in?%>
-    <%=current_user.stripe_customer_id%>
-    <ul class="navbar-nav  mb-2 mb-lg-0">
-        <li>
-          <%=link_to "Wishlist",user_wishlist_path(current_user),class:"nav-link"%>
-        </li>
-        <li>
-          <%=link_to "Cart",cart_path(@current_cart),class:"nav-link"%>
-        </li>
-        <li>
-        <%if current_user.saller?%>
-        <%# <%debugger%>
-          <%=link_to "Add product",new_product_path,class:"nav-link"%>
-        <%end%>
-        </li>
-    <p class="avatar my-1">
-    <%= link_to edit_user_registration_path do%>
-    <%if current_user.avatar.attached?%>
-    <%=image_tag current_user.avatar,height:"50px",width:'50px'%>
-    <%else%>
-    <%=image_tag 'avatar/avatar.jpeg',height:"50px"%>
-    <%end%>
-    <%end%>
-    </p>
-    <p class="my-1">
-    <%= link_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-info"%>
-    </p>
-    <%else%>
-    <p class="my-1" >
-    <%=link_to "Sign In",new_user_session_path,class:"btn btn-info mx-2"%>
-    </p>
-    <p class="my-1" >
-    <%= link_to "Sing Up",new_user_registration_path,class:"btn btn-info"%>
-    </p>
-    
-    </ul>
-    <%end%>
-      
+      </div>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <%=link_to "Flipcart",root_path,class:"navbar-brand" %>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+              </li>
+              <%Category.all.each do |category|%>
+                <li class="nav-item">
+                  <%if user_signed_in?%>
+                    <%=link_to category.name.capitalize,category_path(category),class:"nav-link"%>
+                    <%end%>
+                </li>
+              <%end%>
+            </ul>
+            <%if user_signed_in?%>
+              <%# <%=current_user.stripe_customer_id%>
+              <ul class="navbar-nav">
+                  <li>
+                    <%=link_to "Wishlist",user_wishlist_path(current_user),class:"nav-link"%>
+                  </li>
+                  <li>
+                    <%=link_to "Cart",cart_path(@current_cart),class:"nav-link"%>
+                  </li>
+                  <li>
+                  <%if current_user.saller?%>
+                  <%# <%debugger%>
+                    <%=link_to "Add product",new_product_path,class:"nav-link"%>
+                  <%end%>
+                  </li>
+                <p class="avatar my-1">
+                  <%= link_to edit_user_registration_path do%>
+                    <%if current_user.avatar.attached?%>
+                      <%=image_tag current_user.avatar,height:"50px",width:'50px',class:"image"%>
+                    <%else%>
+                      <%=image_tag 'avatar/avatar.jpeg',height:"50px"%>
+                    <%end%>
+                  <%end%>
+                </p>
+                <p class="my-1">
+                  <%= link_to "Logout",destroy_user_session_path,method: :delete,class:"btn btn-info"%>
+                </p>
+              <%else%>
+                <p class="my-1" >
+                  <%=link_to "Sign In",new_user_session_path,class:"btn btn-info mx-2"%>
+                </p>
+                <p class="my-1" >
+                  <%= link_to "Sing Up",new_user_registration_path,class:"btn btn-info"%>
+                </p>
+              </ul>
+            <%end%>
+          </div>
+        </div>
+      </nav>  
     </div>
-  </div>
-</nav>  
-</div>
- 
-
-
-
-<div class='container my-5'>
-    <%= yield %>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-
+  <div class='container my-5'>
+      <%= yield %>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
   </body>
 </html>

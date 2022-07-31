@@ -11,6 +11,6 @@ class OrderMailer < ApplicationMailer
     @user=params[:user]
     @greeting ="Hi"
     
-    mail to: User.first.email,subject: "New Order created" 
+    mail to: @user.email,subject: "New Order created" 
   end
 end

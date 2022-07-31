@@ -15,15 +15,15 @@
         </div>
         <div class="my-3">
             <%=f.label :address%>
-            <%=f.text_field :address%>
+            <%=f.text_field :address,value: current_user.line_address%>
         </div>
         <div class="my-3">
             <%=f.label :pincode%>
-            <%=f.text_field :pincode%>
+            <%=f.text_field :pincode,value: current_user.pincode%>
         </div>
         <div class="my-3">
             <%=f.label :state%>
-            <%=f.text_field :state%>
+            <%=f.text_field :state,value: current_user.state%>
         </div>
         <%=f.hidden_field :user_id,value: current_user.id%>
         </div>

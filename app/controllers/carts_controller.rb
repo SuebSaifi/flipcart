@@ -2,7 +2,6 @@ class CartsController < ApplicationController
     def create 
       chosen_cart = Cart.find(params[:cart_id])
       current_order = @current_order
-     
     end
     def show
         @cart = @current_cart

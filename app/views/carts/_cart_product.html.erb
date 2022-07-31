@@ -25,10 +25,6 @@
     </td>
 </tr>
 <%end%>
-
 <%if @cart.line_items.present?%>
-
-
-       <%= link_to "Proceed to checkout", new_order_path ,class:"btn btn-info"%><br>
-    
-       <%end%>
+    <%= link_to "Proceed to checkout", new_order_path ,class:"btn btn-info"%><br>
+<%end%>

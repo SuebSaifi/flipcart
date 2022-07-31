@@ -19,11 +19,11 @@ class WebhooksController < ApplicationController
           p e
           return
         end
+        debugger
         case event.type
-        
-        when 'charge.succeeded'
+        when 'checkout.session.completed'
           session = event.data.object
-          order = Order.find_by(stripe_order_id: session.order)
+          order = Order.find_by(id: session.metadata.id)
           order.update(is_paid: true) 
           OrderMailer.with(user: current_user,order:@order).order_created.deliver_later
         end    

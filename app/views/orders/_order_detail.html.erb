@@ -1,11 +1,12 @@
-<h1>Orders Details</h1>
+<h1>Orders Summry</h1>
 <div class="card">
-<div class="card-body">
-<%@current_cart.line_items.each do |product|%>
-<h5 class="card-title"><%=product.product.title*product.quantity%></h5>
-<p class="card-text"><strong>Price: </strong><%=product.product.price * product.quantity%></p>
-<p class="card-text"><strong>Description: </strong><%=product.product.description%></p>
-<hr>
-<%end%>
-</div>
+    <div class="card-body">
+        <%@current_cart.line_items.each do |product|%>
+            <h5 class="card-title"><%=product.product.title*product.quantity%></h5>
+            <p class="card-text"><strong>Price: </strong><%=product.product.price * product.quantity%></p>
+            <p class="card-text"><strong>Description: </strong><%=product.product.description%></p>
+            <hr>
+            
+        <%end%>
+    </div>
 </div>
