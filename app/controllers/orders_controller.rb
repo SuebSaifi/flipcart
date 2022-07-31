@@ -32,8 +32,8 @@ class OrdersController < ApplicationController
     if @order.new_record?
         render "new"
     else
-        session[:order_step]=session[:order_params] = nil
-        @order.current_step=session[:order_steps]
+        session[:order_params] = nil
+        session[:order_steps]=@order.first_step
         flash[:notice] = "Order saved!"
         redirect_to @order
     end

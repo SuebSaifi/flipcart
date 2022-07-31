@@ -18,6 +18,9 @@ class Order < ApplicationRecord
     def first_step?
       current_step==steps.first
     end
+    def first_step
+      current_step=steps.first
+    end
     def last_step?
       current_step==steps.last
     end
