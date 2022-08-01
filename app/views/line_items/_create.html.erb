@@ -1,0 +1,13 @@
+<%=button_to "Add to cart",'javascript:',onclick:"addtocart(#{product_id})",remote: true,method: :post%>
+<script>
+  function addtocart(id){
+    console.log("test")
+    alert("Added To Cart ")
+    $.ajax({
+      url: 'products/'+id+'/line_items',
+      type: 'POST',
+      dataType: 'script',
+      data: {id: id},
+    })
+  }
+</script> 

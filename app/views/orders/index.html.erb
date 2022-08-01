@@ -4,8 +4,8 @@
 <div class="container card">
 
   <% @orders.each do |order| %>
-  <h1>hurray you have orderd successfully</h1>
   <%if current_user.id == order.user_id%>
+  <h1>hurray you have orderd successfully</h1>
     <p>Name: <%= order.name %></p>
     <p>Email: <%= order.email %></p>
     <p>Address: <%= order.address %></p>

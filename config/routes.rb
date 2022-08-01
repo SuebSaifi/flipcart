@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :products,only:[:index,:show,:create,:new] do 
     post "wishlists/toggle",  to: 'wishlists#toggle'
     delete 'wishlist/:id',  to: 'wishlists#toggle' 
+    post '/line_items' ,to: "line_items#create"
   end
   resources :categories,only:[:show]
   resources :user_steps
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
   post 'checkout/create',to: "checkout#create",:defaults => { :format => 'js' }
   post 'line_items/:id/add' => "line_items#add_quantity", as: "line_item_add"
   post 'line_items/:id/reduce' => "line_items#reduce_quantity", as: "line_item_reduce"
-  post '/line_items' ,to: "line_items#create"
   get 'line_items/:id' => "line_items#show", as: "line_item"
   delete 'line_items/:id' => "line_items#destroy"
   get 'carts/:id' => "carts#show", as: "cart"
@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   post "webhook",to:"webhooks#create"
+  get "search" ,to: "searchs#index"
 end

@@ -2,7 +2,7 @@
 
 <p>
 <h1 class="jumbotron">Welcome Shopping App || <%=@category.name%> </h1>
-  <div class="container">
+  <div class="container"style="width:600px;margin-left:100px">
   <div class="row">
   <%Product.all.each do |product|%>
    <%if @category.id == product.category_id%>

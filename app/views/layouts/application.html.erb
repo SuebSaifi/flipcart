@@ -44,6 +44,15 @@
                 </li>
               <%end%>
             </ul>
+            <div>
+            <%=form_tag search_path, :method=> 'get' ,class:"d-flex" ,role:"search" do %>
+              <p>
+                <%= text_field_tag :search, params[:search] ,calss:"form-control me-2",style:"height:40px;width:300px",type:"search",placeholder:"Search" ,"aria-label"=>"Search"%>
+                <%= submit_tag "Search", :name => nil,class:"btn btn-outline-success",type:"submit" %>
+                <%# <button class:"btn btn-outline-success" type:"submit">Search</button> %>
+              </p>  
+            <%end%>
+            </div>
             <%if user_signed_in?%>
               <%# <%=current_user.stripe_customer_id%>
               <ul class="navbar-nav">
