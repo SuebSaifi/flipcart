@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   delete 'carts/:id' => "carts#destroy"
   post "webhook",to:"webhooks#create"
   get "search" ,to: "searchs#index" 
+  resources :brands,only:[:show]
 end

@@ -1,0 +1,25 @@
+<%Product.all.each do |product|%>
+   <%if @brand.id == product.brand_id%>
+  <div class="card my-3">
+    <div class="card-body mx-auto d-flex justify-content-between">
+    <p class="card-item mx-4">
+    <%if product.image.present?%>
+      <%=image_tag product.image , height: 200,class:"ml-4"%>
+      <%else%>
+        <%= image_tag "default/download.jpeg",width: "286px",height: '200px' %>
+      <%end%>
+    </p>
+        <div class="d-flex flex-column">
+      <p class="card-title">Title: <%= product.title %><br/></p >
+      
+      <p class="card-text">Description:<%= product.description %></p>
+     <p class="card-text"> <small>Price:</small><%= product.price %></p>
+      <div class="d-flex " id='wish_<%=product.id%>'>
+     <%# <%debugger%> 
+    <%=render "wishlists/toggle",product_id: product.id%>
+    </div>
+      </div>
+        </div>
+  </div>
+<%end%>
+<%end%>

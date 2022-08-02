@@ -17,6 +17,7 @@
                 </div>
                 <div class="my-3" >
                 <span>Categories:</span><%=f.collection_select(:category_id, Category.all, :id, :name)%>
+                <span>Brand:</span><%=f.collection_select(:brand_id, Brand.all, :id, :name)%>
                  </div>
                 <%= f.button :submit , class:"btn btn-info my-3"%>
             </div>

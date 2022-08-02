@@ -5,6 +5,11 @@ class SearchsController < ApplicationController
         # debugger
         @searchcount = Product.where("title LIKE ?","#{params[:search]}%").count
         @searchproducts = Product.where("title LIKE ?","#{params[:search]}%").offset(@page*Search_Per_page).limit(Search_Per_page)
+        if params[:filter] == "filter"
+            @products = @searchproducts
+            
+        end
+        
     end
     def last 
         @searchcount.last-1
