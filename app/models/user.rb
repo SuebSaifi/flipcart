@@ -35,7 +35,7 @@ class User < ApplicationRecord
   end
   def second_step?
   current_step==steps[1]
-end
+  end
   
   def to_s
     email

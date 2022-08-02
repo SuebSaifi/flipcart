@@ -8,10 +8,8 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :users do 
     get "wishlist" =>"wishlists#index"
-    # resources :carts 
-    # get "order" =>"orders#new"
+
   end
-  resources :charges
   resources :orders
   resources :products,only:[:index,:show,:create,:new] do 
     post "wishlists/toggle",  to: 'wishlists#toggle'
@@ -28,10 +26,6 @@ Rails.application.routes.draw do
   delete 'line_items/:id' => "line_items#destroy"
   get 'carts/:id' => "carts#show", as: "cart"
   delete 'carts/:id' => "carts#destroy"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
   post "webhook",to:"webhooks#create"
-  get "search" ,to: "searchs#index"
+  get "search" ,to: "searchs#index" 
 end

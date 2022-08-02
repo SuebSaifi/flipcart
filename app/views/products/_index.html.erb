@@ -1,32 +1,30 @@
-<%@products.each do |product|%>
 
-<div class="card d-flex flex-wrap mx-3 my-3" style="width:40rem">
-    <%# <%=product.title%>
-   <div class="mx-4 my-3 d-flex" >
-      <div class="imageinfo mx-4"style="width: 13rem;">
-       <%if product.image.present?%>
-        <%=image_tag product.image ,class:"card-img-top",width: "100%",height: '100%',alt:"abcd"%>
-        <%else%>
-          <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
-        <%end%>
-      </div>
-      <div class="information my-5" style="width: 20rem">
-        <%=link_to "#{product.title}",product_path(product.id)%>
-        <div class="card-body my-3">
-          <p class="card-text"><%=product.description%>.</p>
-          </div>
-           <div class="card-body my-2">
-            <b class="card-text"><span>Price:</span><%=product.price%></b>
-          </div>
+<%@products.each do |product|%>
+    <div class="card d-flexmx-3 my-3 mx-3" style="width:35rem">
+        <div class="mx-4 my-3 d-flex"style="width: 100%;" >
+            <div class="imageinfo mx-4"style="width: 10rem;">
+               <%if product.image.present?%>
+                    <%=image_tag product.image ,class:"card-img-top",width: "100%",height: '100%',alt:"abcd",style:"shadow"%>
+                <%else%>
+                    <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
+                <%end%>
+            </div>
+            <div class="information my-5" style="width: 20rem">
+                <%=link_to "#{product.title}",product_path(product.id)%>
+            <div class="card-body my-3">
+                <p class="card-text"><%=product.description%>.</p>
+            </div>
+            <div class="card-body my-2">
+                <b class="card-text"><span>Price:</span><%=product.price%></b>
+            </div>
             <div class="d-flex my-2" id='wish_<%=product.id%>'>
-            <%=render "wishlists/toggle",product_id: product.id%>
+                <%=render "wishlists/toggle",product_id: product.id%>
             </div>
             <div id="cart_<%=product.id%>">
-              <%# <%=button_to "Add to cart", 'javascript:',onclick:"addtocart(#{product.id})"%>
-              
-              <%=render "line_items/create",:product_id=> product.id%>
-           </div>
-      </div> 
+                  <%# <%=button_to "Add to cart", 'javascript:',onclick:"addtocart(#{product.id})"%>              
+                <%=render "line_items/create",:product_id=> product.id%>
+            </div>
+          </div> 
+        </div>
     </div>
-</div>
 <%end%>
