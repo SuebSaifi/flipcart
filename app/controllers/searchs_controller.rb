@@ -7,9 +7,8 @@ class SearchsController < ApplicationController
         @searchproducts = Product.where("title LIKE ?","#{params[:search]}%").offset(@page*Search_Per_page).limit(Search_Per_page)
         if params[:filter] == "filter"
             @products = @searchproducts
-            
+            @products= Product.where("brand_id LIKE ?","#{params[:filter]}")
         end
-        
     end
     def last 
         @searchcount.last-1
