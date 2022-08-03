@@ -47,8 +47,8 @@
             <div>
             <%=form_tag search_path, :method=> 'get' ,class:"d-flex" ,role:"search" do %>
               <p>
-                <%= text_field_tag :search, params[:search] ,calss:"form-control me-2",style:"height:40px;width:300px",type:"search",placeholder:"Search" ,"aria-label"=>"Search"%>
-                <%= submit_tag "Search", :name => nil,class:"btn btn-outline-success",type:"submit" %>
+                <%= text_field_tag :query, params[:query] ,calss:"form-control me-2",style:"height:40px;width:300px",type:"search",placeholder:"Search" ,"aria-label"=>"Search", id: "query" %>
+                <%= link_to "Search", "javascript:",:name => nil,class:"btn btn-outline-success" ,id:"search_btn" %>
                 <%# <button class:"btn btn-outline-success" type:"submit">Search</button> %>
               </p>  
             <%end%>
@@ -93,6 +93,16 @@
         </div>
       </nav>  
     </div>
+      <script>
+      $("#search_btn").on('click',function(){
+        $.ajax({
+          url: "/search",
+          type: "get",
+          dataType: 'script',
+          data: {filter: JSON.stringify('<%=raw (params[:filter] || {}) %>'), query: $('#query').val()}
+        })  
+      })
+      </script>
   <div class='container my-5'>
       <%= yield %>
       </div>

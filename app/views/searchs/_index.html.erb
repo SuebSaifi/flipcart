@@ -1,6 +1,6 @@
  <div class="flex-2">
-        <%if @searchproducts.empty? %>
-            <h1>No Product found</h1>
+    <%if @searchproducts.empty? %>
+        <h1>No Product found</h1>
         <%else%>
             <%@searchproducts.each do |product|%>
                 <div class="card d-flexmx-3 my-3 mx-3" style="width:35rem">
@@ -31,5 +31,5 @@
                     </div>
                 </div>
         <%end%>
-        <%end%>
+    <%end%>
     </div>
