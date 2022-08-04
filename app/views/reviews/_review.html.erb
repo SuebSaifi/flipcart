@@ -4,6 +4,7 @@
             <%=form.hidden_field :user_id ,value: current_user.id%>
             <%=form.label :review%> 
             <%= form.text_area :review,class:"textarea form-control"%>
+            <%=form.select("rating", (1..5).collect {|u| [u] })  %>
              <div class="modal-footer">
             <%=form.submit :review, class:"btn btn-primary my-3" ,id:"Review"%> 
             <div>

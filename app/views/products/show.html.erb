@@ -11,10 +11,7 @@
             <%=render "line_items/create",:product_id=> @product.id%>
         </div>
     </div>
-    <%=form_for([@rating,@product]) do |f|%>
-        <%=f.select("ratings", value: (1..5))%>
-        <%= f.submit "Rate this product"%>
-    <%end%>
+   
     <div class="mx-5">
         <div class="information " style="width: 100%">
             <span class="fs-3 fw-bold"><%=@product.title.capitalize%></span>
