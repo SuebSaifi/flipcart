@@ -1,0 +1,13 @@
+<div id="form_comment">
+    <%=form_for(@review,url: product_reviews_path,remote: true) do |form|%> 
+        <div >
+            <%=form.hidden_field :user_id ,value: current_user.id%>
+            <%=form.label :review%> 
+            <%= form.text_area :review,class:"textarea form-control"%>
+             <div class="modal-footer">
+            <%=form.submit :review, class:"btn btn-primary my-3" ,id:"Review"%> 
+            <div>
+        </div>
+    <%end%>
+    
+</div>

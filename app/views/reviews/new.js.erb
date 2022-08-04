@@ -1,0 +1,5 @@
+$("#ReviewModal").html("<%= j (render 'new') %>");
+$("#ReviewModal").modal();
+$("#Review").click(function(){
+    $("#ReviewModal").modal('hide')
+})

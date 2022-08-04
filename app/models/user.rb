@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :carts
   has_many :orders
   has_many :products,dependent: :destroy 
-  has_many :charges
+  has_many :reviews
   def current_step
     @current_step || steps.first
   end

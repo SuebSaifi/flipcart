@@ -1,10 +1,11 @@
 <div class="card d-flex " style="background-color:;">
     <%=form_tag search_path, :method=> 'get' ,class:"d-flex flex-column" ,role:"search" do %>
             <div class="my-3" style="margin-left:40px;margin-right:40px">
-            <%= select_tag "filter[brand_id]", options_from_collection_for_select(Brand.all, "id", "name"), prompt: "Brand" ,class:"form-select ml-4","aria-label"=> "Default select example"%>
+            
+           <span> Select Brand <%= select_tag "filter[brand_id]", options_from_collection_for_select(Brand.all, "id", "name") ,class:"form-select ml-4","aria-label"=> "Default select example"%></span>
             </div>
             <div class="my-3"style="margin-left:40px;margin-right:40px">
-            <%= select_tag "filter[category_id]", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Category",class:"form-select" %>
+            <span> Select Category <%= select_tag "filter[category_id]", options_from_collection_for_select(Category.all, "id", "name"), class:"form-select" %></span>
             </div>
 
                 <span class="mx-5">Minimum Price<%=text_field_tag "filter[min]"  %></span>
@@ -15,3 +16,14 @@
     <%end%>
 
 </div>
+<script>
+      $("#search_btn").on('click',function(){
+        $.ajax({
+          url: "/search",
+          type: "get",
+          dataType: 'script',
+          data: {filter: JSON.stringify('<%=raw (params[:filter] || {}) %>'), query: $('#query').val()},
+          contentType: 'application/json'
+        })  
+      })
+      </script>

@@ -11,6 +11,7 @@ class SearchsController < ApplicationController
             @searchproducts= @searchproducts.where("title LIKE ?","#{params[:query]}%") if params[:query].present?
         end
         @searchproducts = @searchproducts.paginate(page: params[:page], per_page: 3)
+        render 'index'
     end
     
     private

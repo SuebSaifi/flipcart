@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'ratings/new'
+  get 'ratings/create'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
     post "wishlists/toggle",  to: 'wishlists#toggle'
     delete 'wishlist/:id',  to: 'wishlists#toggle' 
     post '/line_items' ,to: "line_items#create"
+    resources :reviews
+    resources :ratings
   end
   resources :categories,only:[:show]
   resources :user_steps

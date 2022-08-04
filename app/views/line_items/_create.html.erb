@@ -4,7 +4,7 @@
     console.log("test")
     alert("Added To Cart ")
     $.ajax({
-      url: 'products/'+id+'/line_items',
+      url: '/products/'+id+'/line_items',
       type: 'POST',
       dataType: 'script',
       data: {id: id},
