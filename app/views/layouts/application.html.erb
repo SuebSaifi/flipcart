@@ -16,7 +16,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
     <script src="https://js.stripe.com/v3/"></script>
   </head>
+<style>
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
   <body>
     <div class="stnav">
       <div class="notice text-center fw-bolder">
@@ -36,19 +71,24 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
               </li>
-              <%Category.all.each do |category|%>
+              <%Category.all.each do |category|%> 
                 <li class="nav-item">
-                  <%if user_signed_in?%>
-                    <%=link_to category.name.capitalize,category_path(category),class:"nav-link"%>
-                    <%end%>
-                </li>
+                <div class="dropdown">
+              <button class="dropbtn"><%=category.name%></button>
+              <div class="dropdown-content">
+                <%category.brands.each do |brand|%>
+                   <%=link_to brand.name ,brand_path(brand),class:"dropdown-item"%>
+                <%end%>
+                </div>
+              </div>
+              </li>
               <%end%>
             </ul>
             <div>
             <%=form_tag search_path, :method=> 'get' ,class:"d-flex" ,role:"search" do %>
               <p>
                 <%= text_field_tag :query, params[:query] ,calss:"form-control me-2",style:"height:40px;width:300px",type:"search",placeholder:"Search" ,"aria-label"=>"Search", id: "query" %>
-                <%= button_to "Search", "javascript:",:name => nil,class:"btn btn-outline-success" ,id:"search_btn" %>
+                <%= button_to "Search",:name => nil,class:"btn btn-outline-success" ,id:"search_btn" %>
                 <%# <button class:"btn btn-outline-success" type:"submit">Search</button> %>
               </p>  
             <%end%>
@@ -94,14 +134,14 @@
       </nav>  
     </div>
       <script>
-      $("#search_btn").on('click',function(){
-        $.ajax({
-          url: "/search",
-          type: "get",
-          dataType: 'script',
-          data: {filter: JSON.stringify('<%=raw (params[:filter] || {}) %>'), query: $('#query').val()}
-        })  
-      })
+      // $("#search_btn").on('click',function(){
+      //   $.ajax({
+      //     url: "/search",
+      //     type: "get",
+      //     dataType: 'json',
+      //     data: {filter: JSON.stringify('<%=raw (params[:filter] || {}) %>'), query: $('#query').val()}
+      //   })  
+      // })
       </script>
   <div class='container my-5 yeld'>
       <%= yield %>

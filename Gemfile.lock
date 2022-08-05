@@ -309,6 +309,7 @@ DEPENDENCIES
   jquery-rails
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)
+  ransack
   redis (~> 4.0)
   sass-rails
   selenium-webdriver
@@ -321,7 +322,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  will_paginate (~> 3.3)
+  will_paginate (~> 3.3.pre4)
 
 RUBY VERSION
    ruby 2.7.5p203

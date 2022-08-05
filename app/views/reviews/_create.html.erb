@@ -1,24 +1,29 @@
+<%arr=[]%>
+<%count=0%>
+<%sum=0%>
+<%Rating.all.each do |r|%>
+    <%sum=sum+r.rating%>
+    <%arr<<(sum)%>
+<%end%>
 <span class="count mx-5">
-   <%=@product.reviews.count%>   <b>Reviews</b> 
+   <%=@product.reviews.count%> <b>Reviews</b> And <%=(sum/(arr.size).to_f).round(1)%> Ratings
 </span>
 <%Review.all.each do |review|%>
     <%if review.product_id==@product.id%>
         <hr>
         <div class="review d-flex justify-content-between mx-4"  >    
             <div >
-                <%if @product.id==review.product_id%>
-                <span><%=review.rating%></span><span class="fs-6"> <%=review.review%></span><br/>
-                    
+                <%if @product.id==review.product_id%>   <span class="fs-6"> <%=review.review%></span><br/>
                     <span class="text-muted"><%=review.user.first_name%></span>
                 <%end%>            
             </div>
-        <%if review.user.id==current_user.id%>
-            <div >
-              <%=link_to product_review_path(@product,review),remote: true , method: :delete,class:"delete_review",data: {confirm:"Are you sure you want to delete this review?"} do %>
-              <span class="icon"><i class="bi bi-trash"aria-hidden="true"></i></span> 
-              <%end%>
-            </div>    
-        <%end%>           
+            <%if review.user.id==current_user.id%>
+                <div >
+                  <%=link_to product_review_path(@product,review),remote: true , method: :delete,class:"delete_review",data: {confirm:"Are you sure you want to delete this review?"} do %>
+                      <span class="icon"><i class="bi bi-trash"aria-hidden="true"></i></span> 
+                  <%end%>
+                </div>    
+            <%end%>           
         </div>
     <%end%>   
 <%end%>

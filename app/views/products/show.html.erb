@@ -11,7 +11,7 @@
             <%=render "line_items/create",:product_id=> @product.id%>
         </div>
     </div>
-   
+        
     <div class="mx-5">
         <div class="information " style="width: 100%">
             <span class="fs-3 fw-bold"><%=@product.title.capitalize%></span>
@@ -23,6 +23,13 @@
                     <b class="card-text"><span>Price:</span><%=@product.price%></b>
                 </div>
             </div>
+        </div>
+        <div>
+            <%=form_with model: [@product,@product.ratings.build],html:{"data-turbo"=> false},:remote=>true do |f|%>
+                <%= f.hidden_field :user_id ,value: current_user.id%>
+                <%=f.select("rating", (1..5).collect {|u| [u] },class:"form-select","aria-label"=>"Default select example")  %>
+                <%=f.submit "Rate Product" ,id:"rate"  %>
+            <%end%>
         </div>
         <div class=""style= "width:100%">   
         <%= link_to  new_product_review_path(@product),remote: true,'data-bs-toggle' =>  "modal", 'data-bs-target' => '#ReviewModal',class:"icon"  do %>
@@ -43,3 +50,15 @@
         <div class="review-content"></div>
     </div>
 </div>
+
+<script>
+$("#rate").on('click',function(){
+    $.ajax({
+    url: "/products"+"#{<%=@product.id%>}"+"/ratings",
+    type: "POST",
+    data: { rwview:review, user_id:user_id },	
+
+    })
+} )
+    
+</script>

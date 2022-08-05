@@ -7,6 +7,7 @@ class Product < ApplicationRecord
    has_many :orders
    belongs_to :brand
    has_many :reviews ,dependent: :destroy
+   has_many :ratings ,dependent: :destroy
    after_create do
       product=Stripe::Product.create(name: title)
       price = Stripe::Price.create(product: product,unit_amount: self.price.to_i*100,currency:"inr")
