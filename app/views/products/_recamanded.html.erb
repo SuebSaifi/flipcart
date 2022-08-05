@@ -1,0 +1,21 @@
+
+<div class="">
+<h2>Suggested for You</h2>
+<%Category.where(name: "Fashion").each do |f|%>
+<%f.brands.each do |ff|%>
+<div class="d-flex flex-sm-row ">
+<%ff.products.each do |p|%>
+<div class="card mx-4" style="width: 18rem; height">
+  <%=image_tag p.image, class:"card-img-top",style:"height:40vh" %>
+  <div class="card-body">
+    <h5 class="card-title"><%=p.title%></h5>
+    <p class="card-text"><%=p.description%></p>
+    <%=link_to  "Go To Product" , product_path(p),class:"btn btn-primary",style:"color:white"%>
+  </div>
+</div>
+<%end%>
+</div>
+<%end%>
+
+<%end%>
+</div>

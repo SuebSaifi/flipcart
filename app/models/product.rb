@@ -14,4 +14,16 @@ class Product < ApplicationRecord
       update(stripe_product_id: product.id,stripe_price_id: price.id)
    end
    
-end   
+   def product_rating
+      arr=[]   
+      sum = 0
+      rates=0
+      Product.ratings.each do |rate|
+         sum+=rate
+         arr<< sum
+
+      end
+      rates=(sum/(arr.size).to_f).round(1)
+   end
+   
+end      
