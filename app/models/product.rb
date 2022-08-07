@@ -15,15 +15,14 @@ class Product < ApplicationRecord
    end
    
    def product_rating
-      arr=[]   
-      sum = 0
-      rates=0
-      Product.ratings.each do |rate|
-         sum+=rate
-         arr<< sum
-
-      end
-      rates=(sum/(arr.size).to_f).round(1)
+      rate = self.ratings.pluck("rating")
+      average_rating = rate.sum/((rate.size).to_f).round(1)
+      p average_rating
    end
-   
+   def product_rating_count
+      rate = self.ratings.pluck("rating").count
+   end
+   def product_review_count
+      reviews = self.reviews.count
+   end
 end      

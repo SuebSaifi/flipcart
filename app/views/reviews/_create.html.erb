@@ -1,13 +1,3 @@
-<%arr=[]%>
-<%count=0%>
-<%sum=0%>
-<%Rating.all.each do |r|%>
-    <%sum=sum+r.rating%>
-    <%arr<<(sum)%>
-<%end%>
-<span class="count mx-5">
-   <%=@product.reviews.count%> <b>Reviews</b> And <%=(sum/(arr.size).to_f).round(1)%> Ratings
-</span>
 <%Review.all.each do |review|%>
     <%if review.product_id==@product.id%>
         <hr>

@@ -25,13 +25,29 @@
             </div>
         </div>
         <div>
+        <div class="count d-flex align-items-center">
+            <div class="star d-flex align-items-center justify-content-around" style="color: #fff; background-color:#26a541;width: 54px;height: 20px;display: flex;align-content: center;border-radius: 16px;">
+                <span class="fs-6 fw-bold "style="color: #fff">
+                    <%=@product.product_rating%>
+                </span>
+                <span>
+                    <i class="bi bi-star-fill"></i>
+                </span>
+            </div> 
+            <span class="fs-6 fw-bold text-muted mx-2">
+                <%=@product.product_rating_count%> ratings and <%=@product.reviews.count%> reviews
+            </span>
+        </div>
+        <% if !@product.ratings.where(user_id:current_user.id).present?%>
+       
             <%=form_with model: [@product,@product.ratings.build],html:{"data-turbo"=> false},:remote=>true do |f|%>
                 <%= f.hidden_field :user_id ,value: current_user.id%>
                 <%=f.select("rating", (1..5).collect {|u| [u] },class:"form-select","aria-label"=>"Default select example")  %>
                 <%=f.submit "Rate Product" ,id:"rate"  %>
             <%end%>
+            <%end%>
         </div>
-        <div class=""style= "width:100%">   
+        <div class="fs-4 flex-end"style= "width:100%">   
         <%= link_to  new_product_review_path(@product),remote: true,'data-bs-toggle' =>  "modal", 'data-bs-target' => '#ReviewModal',class:"icon"  do %>
     	    <span>
                 <i class="bi bi-chat" style="width:10px; color:black;"></i>
