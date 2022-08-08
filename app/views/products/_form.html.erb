@@ -15,6 +15,9 @@
                 <div class="my-3" >
                     <%=f.input :image ,lable_html:{class:"form-lable ",for:"formFile"},class:"btn btn-info"%>   
                 </div>
+                <div>
+                <%= f.select :color, options_for_select(["Blue", "red", "green", "yellow", "black", "Other"],:disabled => ["Select One"]), :class => 'genForm_dropBox' %>
+                </div>
                 <div class="my-3" >
                 <span>Categories:</span><%=f.collection_select(:category_id, Category.all, :id, :name)%>
                 <span>Brand:</span><%=f.collection_select(:brand_id, Brand.all, :id, :name)%>

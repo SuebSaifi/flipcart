@@ -1,6 +1,6 @@
 
 <%@products.each do |product|%>
-    <div class="card d-flexmx-3 my-3 mx-3" style="width:35rem">
+    <div class="card d-flex  my-3 mx-3" style="width:35rem">
         <div class="mx-4 my-3 d-flex"style="width: 100%;" >
             <div class="imageinfo mx-4"style="width: 10rem;">
                <%if product.image.present?%>
@@ -17,7 +17,7 @@
             <div class="card-body my-2">
                 <b class="card-text"><span>Price:</span><%=product.price%></b>
             </div>
-            <div class="d-flex my-2" id='wish_<%=product.id%>'>
+            <div class="d-flex my-2 wishlist" id='wish_<%=product.id%>'>
                 <%=render "wishlists/toggle",product_id: product.id%>
             </div>
             <div id="cart_<%=product.id%>">
@@ -28,3 +28,11 @@
         </div>
     </div>
 <%end%>
+<style>
+   .wishlist{
+        position:absolute;
+        top:5px;
+        right:10px
+        
+    }
+</style>

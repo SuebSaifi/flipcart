@@ -1,20 +1,25 @@
-<div class="card d-flex " style="background-color:;">
+<div class="card d-flex mx-3" style="">
     <%=form_tag search_path, :method=> 'get' ,class:"d-flex flex-column" ,role:"search" do %>
-            <div class="my-3" style="margin-left:40px;margin-right:40px">
-            
+        <div class="my-3" style="margin-left:40px;margin-right:40px">
            <span> Select Brand <%= select_tag "filter[brand_id]", options_from_collection_for_select(Brand.all, "id", "name") ,class:"form-select ml-4","aria-label"=> "Default select example"%></span>
             </div>
             <div class="my-3"style="margin-left:40px;margin-right:40px">
             <span> Select Category <%= select_tag "filter[category_id]", options_from_collection_for_select(Category.all, "id", "name"), class:"form-select" %></span>
-            </div>
-
-                <span class="mx-5">Minimum Price<%=text_field_tag "filter[min]"  %></span>
-                <span class="mx-5">Maximum Price<%=text_field_tag "filter[max]"  %></span>
-
-            <%= submit_tag "Filter", name: nil, class:"btn btn-primary btn-sm my-3" %>
- 
+        </div>
+        <span class="mx-5 my-3">Minimum Price<%=text_field_tag "filter[min]"  %></span>
+        <span class="mx-5">Maximum Price<%=text_field_tag "filter[max]"  %></span>
+        <div class="d-flex flex-column mx-5 my-3">
+        <h4>Colors</h4>
+        <%=%>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'black' %> <span class="mx-1" style="width:13px;height:13px;background-color:#000;border-radius:50%"></span> Black </p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'blue' %><span class="mx-1" style="width:13px;height:13px;background-color:blue;border-radius:50%"></span> Blue</p>                   
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'green' %> <span class="mx-1" style="width:13px;height:13px;background-color:#008000;border-radius:50%"></span>Green</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'yellow' %><span class="mx-1" style="width:13px;height:13px;background-color:#FFFF00;border-radius:50%"></span> Yellow</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'white' %><span class="mx-1" style="width:13px;height:13px;background-color:#FFFFFF;border-radius:50%"></span> White</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'red' %><span class="mx-1" style="width:13px;height:13px;background-color:#FF0000;border-radius:50%"></span> Red</p>
+        </div>
+        <%= submit_tag "Filter", name: nil, class:"btn btn-primary btn-sm my-3" %>
     <%end%>
-
 </div>
 <script>
       $("#search_btn").on('click',function(){
@@ -26,4 +31,4 @@
           contentType: 'application/json'
         })  
       })
-      </script>
+</script>

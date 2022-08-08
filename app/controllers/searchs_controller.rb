@@ -8,9 +8,10 @@ class SearchsController < ApplicationController
         if params[:filter].present?
             @searchproducts= @searchproducts.where(brand_id: filter_params[:brand_id]) if filter_params[:brand_id] 
             @searchproducts= @searchproducts.where(category_id: filter_params[:category_id]) if filter_params[:category_id].present?
-            @searchproducts= @searchproducts.where(price: (filter_params[:min]..filter_params[:max])) if (filter_params[:min] || filter_params[:max]).present?
+            @searchproducts= @searchproducts.where(price: (filter_params[:min]..filter_params[:max])) if (filter_params[:min] || filter_params[:max]).present?  
+            @searchproducts=@searchproducts.where(color: filter_params[:color]) if (filter_params[:color]).present?
         end
-        @searchproducts = @searchproducts.paginate(page: params[:page], per_page: 3)
+        @searchproducts = @searchproducts.paginate(page: params[:page], per_page: 5)
         render 'index'
     end
     
@@ -18,6 +19,6 @@ class SearchsController < ApplicationController
     
     def filter_params
 
-        params.require(:filter).permit(:brand_id, :category_id, :min, :max, :query)
+        params.require(:filter).permit(:brand_id, :category_id, :min, :max, :query,:color)
     end
 end

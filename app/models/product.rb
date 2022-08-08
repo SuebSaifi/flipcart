@@ -16,13 +16,13 @@ class Product < ApplicationRecord
    
    def product_rating
       rate = self.ratings.pluck("rating")
-      average_rating = rate.sum/((rate.size).to_f).round(1)
+      average_rating = rate.sum/((rate.size).to_f).round(1) 
       p average_rating
    end
    def product_rating_count
-      rate = self.ratings.pluck("rating").count
+      self.ratings.pluck("rating").count
    end
    def product_review_count
-      reviews = self.reviews.count
+      self.reviews.count
    end
 end      

@@ -1,11 +1,21 @@
-<div class="d-flex flex-wrap ">
-<%if user_signed_in? %>
-<%=render "recamanded"%>
-<%=render"index"%>
-<%end%>
+<div class="container d-flex flex-wrap ">
+  <%if user_signed_in? %>
+  
+    <div>
+    
+    <h2>Suggested for You</h2>
+      <%=render "recamanded"%>
+    </div>
+    <div class="my-3">
+    <h2>All Products</h2>
+    <div class="d-flex mx-3 flex-wrap">
+      <%=render"index"%>
+    </div>
+    </div>
+  <%end%>
 </div>
 <%if user_signed_in?%>
-<%= will_paginate @products %>
+  <%= will_paginate @products %>
 <%end%>
       <%# <%=product.stripe_product_id%>
       <%# <%=product.stripe_price_id%>

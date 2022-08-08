@@ -1,13 +1,32 @@
 
-<h1>Confirm Details</h1>
+<h1>Confirmation Details</h1>
 <div class="card">
-    <div class="card-body">
-        <%@current_cart.line_items.each do |product|%>
-            <h5 class="card-title"><%=product.product.title*product.quantity%></h5>
-            <p class="card-text"><strong>Price: </strong><%=product.product.price %></p>
-            <p class="card-text"><strong>Description: </strong><%=product.product.description%></p>
-            <hr>
+    <div class="d-flex mx-3 my-2 flex-column">
+        <h3>User Detail</h3>
+        <p><b>Name:</b> <%=@order.name%></p>
+        <p><b>Email: </b><%=@order.email%></p>
+        <p><b>Mobile:</b> <%=@order.phone_number%></p>
+        <p><b>Line-Address: </b><%=@order.address%></p>
+        <p><b>Pin-code: </b><%=@order.pincode%></p>
+        <p><b>State: </b><%=@order.state%></p>
 
+    </div>
+    <div class="card-body">
+    
+    <h3>Order Detail</h3>
+        <%@current_cart.line_items.each do |product|%>
+            <div class="d-flex my-3 ">
+                <div>
+                    <%=image_tag product.product.image,class:"mx-3",style:"height:100px;width:50px"%>
+                </div>
+                <div class="mx-2">
+                    <h5 class="card-title"><strong>Title: </strong><%=product.product.title*product.quantity%></h5>
+                    <p class="card-text"><strong>Price: </strong><%=product.product.price %></p>
+                    <p class="card-text"><strong>Description: </strong><%=product.product.description%></p>
+                    <hr>
+                </div>
+            </div>
         <%end%>
+        <b>Total <%=@current_cart.sub_total%>  </b> 
     </div>
 </div>

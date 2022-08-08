@@ -5,12 +5,9 @@ class OrderMailer < ApplicationMailer
   #
   #   en.order_mailer.order_created.subject
   #
-  def order_created
+  def order_created(order)
     
-    @order=params[:order]
-    @user=params[:user]
-    @greeting ="Hi"
-    
-    mail to: @user.email,subject: "New Order created" 
+    @order=order
+    mail to: @order.email,subject: "New Order created" 
   end
 end

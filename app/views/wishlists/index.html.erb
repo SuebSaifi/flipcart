@@ -1,10 +1,10 @@
-<div class="container my-3 d-flex">
+<div class="container my-3 d-flex flex-wrap">
     <%@wishlists.each do |wish|%>
         <%if current_user.id == wish.user.id%>
-            <div class="card mx-4 " style="width: 18rem;">
+            <div class="card mx-4 my-3 card d-flex  my-3 mx-3 align-items-center" style="width: 18rem;">
                 <div class="img">
                     <%if wish.product.image.present?%>
-                        <%=image_tag wish.product.image ,class:"card-img-top",width: "286px",height: '200px'%>
+                        <%=image_tag wish.product.image ,class:"card-img-top",width: "286px",height: '200px',style:"height:40vh"%>
                     <%else%>
                         <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
                     <%end%>
@@ -14,7 +14,7 @@
                     <p class="card-text"><b><small>Rs.</small></b><%=wish.product.price%></p>
                 </div>
                 <div class="wishilist">
-                    <div id="wish_<%=wish.product.id%>">
+                    <div class="wishlist" id="wish_<%=wish.product.id%>">
                         <%=render "wishlists/toggle",product_id: wish.product.id%>
                     </div>
                      <div id="cart_<%=wish.product.id%>">              
@@ -25,3 +25,12 @@
         <%end%>
     <%end%>
 </div>
+
+<style>
+   .wishlist{
+        position:absolute;
+        top:5px;
+        right:10px
+        
+    }
+</style>

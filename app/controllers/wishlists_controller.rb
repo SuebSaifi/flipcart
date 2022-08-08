@@ -12,6 +12,7 @@ class WishlistsController < ApplicationController
             # debugger
             @wishlist=@product.wishlists.find(params[:id])
             @wishlist.destroy
+            flash[:notice] = "Removed from your Wishlist"
             respond_to do |format| 
                 format.html
                 format.js
@@ -19,6 +20,7 @@ class WishlistsController < ApplicationController
         else
             @wishlist = Wishlist.create(product_id: params[:product_id] ,user_id: current_user.id)
             if @wishlist.save
+                flash[:notice] = "Added to your Wishlist"
                 respond_to do |format| 
                     format.html 
                     format.js  

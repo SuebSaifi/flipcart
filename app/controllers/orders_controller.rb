@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
             item.update(cart_id: nil)
         end
         @order.save
+        OrderMailer.order_created(@order).deliver_now!
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
     else

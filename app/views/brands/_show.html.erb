@@ -1,25 +1,38 @@
+<h3 class="mx-4"><%=@brand.name%></h3><br/>
+<div class="d-flex mx-3 flex-wrap">
 <%Product.all.each do |product|%>
    <%if @brand.id == product.brand_id%>
-  <div class="card my-3">
-    <div class="card-body mx-auto d-flex justify-content-between">
-    <p class="card-item mx-4">
-    <%if product.image.present?%>
-      <%=image_tag product.image , height: 200,class:"ml-4"%>
-      <%else%>
-        <%= image_tag "default/download.jpeg",width: "286px",height: '200px' %>
-      <%end%>
-    </p>
-        <div class="d-flex flex-column">
-      <p class="card-title">Title: <%= product.title %><br/></p >
-      
-      <p class="card-text">Description:<%= product.description %></p>
-     <p class="card-text"> <small>Price:</small><%= product.price %></p>
-      <div class="d-flex " id='wish_<%=product.id%>'>
-     <%# <%debugger%> 
-    <%=render "wishlists/toggle",product_id: product.id%>
+    <div class="card my-3 mx-3" style="width:25rem">
+      <div class="card-body mx-auto d-flex flex-column justify-content-between">
+        <p class="card-item mx-auto">
+        <%if product.image.present?%>
+          <%=image_tag product.image , height: 200,class:"ml-4"%>
+          <%else%>
+            <%= image_tag "default/download.jpeg",width: "286px",height: '200px' %>
+          <%end%>
+        </p>
+          <div class="d-flex flex-column">
+            <p class="card-title">Title: <%= product.title %><br/></p >
+            <p class="card-text">Description:<%= product.description %></p>
+            <p class="card-text"> <small>Price:</small><%= product.price %></p>
+            <div class="d-flex wishlist" id='wish_<%=product.id%>'>
+              <%# <%debugger%> 
+              <%=render "wishlists/toggle",product_id: product.id%>
+            </div>
+              <div id="cart_<%=product.id%>">
+                  <%# <%=button_to "Add to cart", 'javascript:',onclick:"addtocart(#{product.id})"%>              
+                <%=render "line_items/create",:product_id=> product.id%>
+            </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</div>
+  <%end%>
 <%end%>
-<%end%>
+</div>
+ <style>
+    .wishlist{
+        position:absolute;
+        top:5px;
+        right:10px
+    }
+    </style>

@@ -3,12 +3,12 @@
     <%# <%=product.title%>
    <div class="card mx-4 my-3" style="width: 18rem;">
      <%if order.product.image.present?%>
-      <%=image_tag order.product.image ,class:"card-img-top",width: "286px",height: '200px',alt:"abcd"%>
+      <%=image_tag order.product.image ,class:"card-img-top mx-auto my-2",style:"width:150px;height:200px",alt:"abcd"%>
       <%else%>
         <%= image_tag "default/download.jpeg",class:"card-img-top",width: "286px",height: '200px' %>
       <%end%>
     <div class="card-body">
-      <p class="card-text"><%=order.product.description%>.</p>
+      <p class="card-text"><%=order.product.title%>.</p>
     </div>
      <div class="card-body">
       <b class="card-text"><span>Price:</span><%=order.product.price%></b>

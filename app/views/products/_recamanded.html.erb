@@ -1,21 +1,35 @@
 
 <div class="">
-<h2>Suggested for You</h2>
-<%Category.where(name: "Fashion").each do |f|%>
-<%f.brands.each do |ff|%>
-<div class="d-flex flex-sm-row ">
-<%ff.products.each do |p|%>
-<div class="card mx-4" style="width: 18rem; height">
-  <%=image_tag p.image, class:"card-img-top",style:"height:40vh" %>
-  <div class="card-body">
-    <h5 class="card-title"><%=p.title%></h5>
-    <p class="card-text"><%=p.description%></p>
-    <%=link_to  "Go To Product" , product_path(p),class:"btn btn-primary",style:"color:white"%>
-  </div>
+    <%Category.where(name: "Fashion").each do |f|%>
+        <%f.brands.each do |ff|%>
+            <div class="d-flex flex-sm-row ">
+                <%ff.products.each do |p|%>
+                    <div class="card mx-4" style="width: 18rem;">
+                        <%=image_tag p.image, class:"card-img-top",style:"height:40vh" %>
+                        <div class="card-body">
+                            <h5 class="card-title"><%=p.title%></h5>
+                            <p class="card-text"><%=p.description.truncate(100,separator: /\s/)%></p>
+                            <%=link_to  "Go To Product" , product_path(p),class:"btn btn-primary goto",style:"color:white"%>
+                        </div>
+                        <div class="d-flex my-2 wishlist" id='wish_<%=p.id%>'>
+                            <%=render "wishlists/toggle",product_id: p.id%>
+                        </div>
+                    </div>
+                <%end%>
+            </div>
+        <%end%>
+    
+    <%end%>
 </div>
-<%end%>
-</div>
-<%end%>
-
-<%end%>
-</div>
+<style>
+   .wishlist{
+        position:absolute;
+        top:5px;
+        right:10px
+        
+    }
+    .goto{
+        position:absolute;
+        bottom: 10px        
+    }
+</style>

@@ -1,1 +1,24 @@
 You got a new order from <%= @order.name %>!
+
+    Order details
+    <%@order.line_items.each do |item|%>
+   Product_id: <%=item.product.stripe_product_id%><br/>
+   Product Title: <%=item.product.title%><br/>
+   Peoduct Quantity: <%=item.quantity%><br/>
+   Product Base Price: <%=item.product.price%><br/>
+   Paid Status: <%=@order.is_paid%><br/>
+
+<%end%>
+    --------------------------
+    
+   Name: <%= @order.name %></p>
+   mail: <%= @order.email %></p>
+   Address: <%= @order.address %></p>
+    <p>Phone: <%= @order.phone_number %></p>
+    <p>pincode: <%= @order.pincode %></p>
+    <p>state: <%= @order.state %></p>
+
+    <p>
+    Message:<br>
+    ----------
+    </p>
