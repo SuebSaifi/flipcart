@@ -18,6 +18,13 @@
 	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'white' %><span class="mx-1" style="width:13px;height:13px;background-color:#FFFFFF;border-radius:50%"></span> White</p>
 	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[color]", 'red' %><span class="mx-1" style="width:13px;height:13px;background-color:#FF0000;border-radius:50%"></span> Red</p>
         </div>
+        <div class="d-flex flex-column mx-5 my-3">
+            <h4>CUSTOMER RATINGS</h4>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '4.0..5.0' %><span class="mx-1" ></span> 4.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '3.0..4.0' %><span class="mx-1" ></span> 3.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '2.0..3.0' %><span class="mx-1" ></span> 2.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '1.0' %><span class="mx-1" ></span> 1.0 <i class="bi bi-star-fill"></i> & above</p>
+		</div>
         <%= submit_tag "Filter", name: nil, class:"btn btn-primary btn-sm my-3" %>
     <%end%>
 </div>
