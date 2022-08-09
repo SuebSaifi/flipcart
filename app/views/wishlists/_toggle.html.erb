@@ -5,20 +5,15 @@
 		    <%wishlist=current_user.wishlists.find_by(product_id: product_id).id%>
 			<div id = "dislist">
 			    <%=link_to "/products/#{product_id}/wishlist/#{wishlist}",method: :delete,class:"destroy_like", id:"icon",remote: true ,style:"text-decoration:none" do%>
-				    <i class="fa-solid fa-heart" style="color:rgb(249, 24, 128);font-size:16px"></i>
+				    <i class="fa-solid fa-heart" style="color:rgb(249, 24, 128);font-size:16px;"></i>
 				<%end%>
 			</div>
 		</div>
 	<%else%>  
 		<div id = "wishlist">
 			<%=link_to product_wishlists_toggle_path(product_id) ,method: :post,remote: true,id:"icon",style:"text-decoration:none" do %>
-				<span class="icon"><i class="fa-regular fa-heart" id="hi" style="color:gray; font-size:16px;opacity:50%"></i></span>
+				<span class="icon"><i class="fa-solid fa-heart" id="hi" style="color:gray; font-size:16px;opacity:50%"></i></span>
 			<%end%>
 		</div>
 	<%end%>    
 </div>
-<script>
-$("#hi").on('click',function(){
-	alert("Added to your Wishlist")
-})
-</script>

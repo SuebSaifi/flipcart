@@ -1,5 +1,9 @@
-<div class="card d-flex mx-3" style="">
+<div class="card d-flex mx-3" >
+<h3 class="mx-3 my-2 fw-bolder "style="color:black">Filters</h3>
+<hr class="my-0">
     <%=form_tag search_path, :method=> 'get' ,class:"d-flex flex-column" ,role:"search" do %>
+        <%= hidden_field_tag :query, params[:query] ,calss:"form-control me-2",style:"height:40px;width:300px",type:"search",placeholder:"Search" ,"aria-label"=>"Search", id: "query" %>
+    
         <div class="my-3" style="margin-left:40px;margin-right:40px">
            <span> Select Brand <%= select_tag "filter[brand_id]", options_from_collection_for_select(Brand.all, "id", "name") ,class:"form-select ml-4","aria-label"=> "Default select example"%></span>
             </div>
@@ -20,10 +24,10 @@
         </div>
         <div class="d-flex flex-column mx-5 my-3">
             <h4>CUSTOMER RATINGS</h4>
-	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '4.0..5.0' %><span class="mx-1" ></span> 4.0 <i class="bi bi-star-fill"></i> & above</p>
-	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '3.0..4.0' %><span class="mx-1" ></span> 3.0 <i class="bi bi-star-fill"></i> & above</p>
-	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '2.0..3.0' %><span class="mx-1" ></span> 2.0 <i class="bi bi-star-fill"></i> & above</p>
-	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", '1.0' %><span class="mx-1" ></span> 1.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", 4.1 %><span class="mx-1" ></span> 4.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", 2.9 %><span class="mx-1" ></span> 3.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", 1.9%><span class="mx-1" ></span> 2.0 <i class="bi bi-star-fill"></i> & above</p>
+	        <p class="d-flex align-items-center"><%= radio_button_tag "filter[rating]", 1.0 %><span class="mx-1" ></span> 1.0 <i class="bi bi-star-fill"></i> & above</p>
 		</div>
         <%= submit_tag "Filter", name: nil, class:"btn btn-primary btn-sm my-3" %>
     <%end%>

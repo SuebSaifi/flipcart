@@ -10,12 +10,11 @@ class SearchsController < ApplicationController
             @searchproducts= @searchproducts.where(category_id: filter_params[:category_id]) if filter_params[:category_id].present?
             @searchproducts= @searchproducts.where(price: (filter_params[:min]..filter_params[:max])) if (filter_params[:min] || filter_params[:max]).present?  
             @searchproducts=@searchproducts.where(color: filter_params[:color]) if (filter_params[:color]).present?
-            debugger
-            @searchproducts= @searchproducts.joins(:ratings).group("rating").having("avg(rating) <=?", filter_params[:rating])if (filter_params[:rating]).present?
+            @searchproducts= @searchproducts.joins(:ratings).group("rating").having("avg(rating) < ?", (filter_params[:rating].to_f+1.0))if (filter_params[:rating]).present?
         end
         @searchproducts = @searchproducts.paginate(page: params[:page], per_page: 5)
         render 'index'
-    end
+    end 
     
     private
     
