@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :products,dependent: :destroy 
   has_many :reviews
   has_many :ratings
+  has_many :replies
   def current_step
     @current_step || steps.first
   end

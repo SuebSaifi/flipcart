@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     post "wishlists/toggle",  to: 'wishlists#toggle'
     delete 'wishlist/:id',  to: 'wishlists#toggle' 
     post '/line_items' ,to: "line_items#create"
-    resources :reviews
+    resources :reviews do 
+      resources :replies
+    end
     resources :ratings
   end
   resources :categories,only:[:show]
